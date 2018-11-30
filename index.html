@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BitcoinChange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Learn Fetch API</title>
 </head>
 <body>
-    <h1>BitcoinChange</h1>
+    <div id="btc-price">$</div>
+
+    <div>
+        1 BTC Rate:
+        <ul>
+        <li id="rate-idr">Rp</li>
+        <li id="rate-usd">$</li>
+        </ul>
+    </div>
+
+    <div>
+        Time:
+        <ul>
+            <li id="time-updated">Updated: </li>
+            <li id="time-updatediso">Updated ISO: </li>
+            <li id="time-updateduk">Updated UK: </li>
+        </ul>
+    </div>
+
+    <div>
+        Last 31 days Bitcoin Price Index:
+        <ul id="monthly-price">
+
+        </ul>
+    </div>
+
+    <footer>Powered by <a href="https://www.coindesk.com/price/">CoinDesk</a>.</footer>
+
+    <script src="BitcoinChange.js"></script>
 </body>
 </html>
