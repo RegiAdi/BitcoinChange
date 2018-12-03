@@ -1,0 +1,1019 @@
+CryptoCompare API Reference
+
+--------------------------------------------------------------------------------
+URL Example
+--------------------------------------------------------------------------------
+https://min-api.cryptocompare.com/data/pricemulti?
+    fsyms=ETH,DASH&
+    tsyms=BTC,USD,EUR&
+    api_key=INSERT-YOUR-API-KEY-HERE
+
+--------------------------------------------------------------------------------
+Single Symbol Price
+
+Get the current price of any cryptocurrency in any other currency that you need.
+If the crypto does not trade directly into the toSymbol requested, BTC will be
+used for conversion. If the opposite pair trades we invert it (eg.: BTC-XMR)
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/price?
+    fsym=BTC&
+    tsyms=USD,JPY,EUR
+
+RESPONSE
+    Object
+        USD:  3997.27
+        JPY: 450384.42
+        EUR: 3508.97
+
+--------------------------------------------------------------------------------
+Multiple Symbols Price
+
+Same as single API path but with multiple from symbols.
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/pricemulti?
+    fsyms=BTC,ETH&
+    tsyms=USD,EUR
+
+RESPONSE
+    Object
+        BTC: Object
+            USD: 3991.77
+            EUR: 3501.15
+        ETH: Object
+            USD: 111.93
+            EUR: 97.88
+
+--------------------------------------------------------------------------------
+Multiple Symbols Full Data
+
+Get all the current trading info (price, vol, open, high, low etc) of any list
+of cryptocurrencies in any other currency that you need. If the crypto does not
+trade directly into the toSymbol requested, BTC will be used for conversion.
+
+This API also returns Display values for all the fields. If the opposite pair
+trades we invert it (eg.: BTC-XMR)
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/pricemultifull?
+    fsyms=BTC&
+    tsyms=USD,EUR
+
+RESPONSE
+    Object
+        RAW: Object
+            BTC: Object
+                USD: Object
+                    TYPE:  "5"
+                    MARKET:  "CCCAGG"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "4"
+                    PRICE: 3994.33
+                    LASTUPDATE: 1543821005
+                    LASTVOLUME: 0.18862827
+                    LASTVOLUMETO: 759.379689366
+                    LASTTRADEID:  "319485979"
+                    VOLUMEDAY: 32363.740825239245
+                    VOLUMEDAYTO: 130023165.52584308
+                    VOLUME24HOUR: 73993.81903175793
+                    VOLUME24HOURTO: 303510829.0960079
+                    OPENDAY: 4143.86
+                    HIGHDAY: 4159.01
+                    LOWDAY: 3956.96
+                    OPEN24HOUR: 4165.97
+                    HIGH24HOUR: 4245.84
+                    LOW24HOUR: 3954.54
+                    LASTMARKET:  "Bitfinex"
+                    CHANGE24HOUR: -171.64000000000033
+                    CHANGEPCT24HOUR: -4.120048872171435
+                    CHANGEDAY: -149.52999999999975
+                    CHANGEPCTDAY: -3.6084713286645727
+                    SUPPLY: 17404437
+                    MKTCAP: 69519064842.20999
+                    TOTALVOLUME24H: 435324.72724513494
+                    TOTALVOLUME24HTO: 1746785715.699946
+                EUR: Object
+                    TYPE:  "5"
+                    MARKET:  "CCCAGG"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "EUR"
+                    FLAGS:  "1"
+                    PRICE: 3503.62
+                    LASTUPDATE: 1543821001
+                    LASTVOLUME: 0.05128121
+                    LASTVOLUMETO: 178.0816939065
+                    LASTTRADEID:  "78838661"
+                    VOLUMEDAY: 3968.5650139001023
+                    VOLUMEDAYTO: 14033640.769839376
+                    VOLUME24HOUR: 12244.508182499987
+                    VOLUME24HOURTO: 44355460.59127603
+                    OPENDAY: 3642.13
+                    HIGHDAY: 3655.04
+                    LOWDAY: 3473.38
+                    OPEN24HOUR: 3667.39
+                    HIGH24HOUR: 3741.23
+                    LOW24HOUR: 3470.66
+                    LASTMARKET:  "Bitstamp"
+                    CHANGE24HOUR: -163.76999999999998
+                    CHANGEPCT24HOUR: -4.465573609569748
+                    CHANGEDAY: -138.51000000000022
+                    CHANGEPCTDAY: -3.802994401627625
+                    SUPPLY: 17404437
+                    MKTCAP: 60978533561.939995
+                    TOTALVOLUME24H: 435324.72724513494
+                    TOTALVOLUME24HTO: 1526667777.703505
+        DISPLAY: Object
+            BTC: Object
+                USD: Object
+                    FROMSYMBOL:  "Ƀ"
+                    TOSYMBOL:  "$"
+                    MARKET:  "CryptoCompare Index"
+                    PRICE:  "$ 3,994.33"
+                    LASTUPDATE:  "Just now"
+                    LASTVOLUME:  "Ƀ 0.1886"
+                    LASTVOLUMETO:  "$ 759.38"
+                    LASTTRADEID:  "319485979"
+                    VOLUMEDAY:  "Ƀ 32,363.7"
+                    VOLUMEDAYTO:  "$ 130,023,165.5"
+                    VOLUME24HOUR:  "Ƀ 73,993.8"
+                    VOLUME24HOURTO: "$ 303,510,829.1"
+                    OPENDAY:  "$ 4,143.86"
+                    HIGHDAY:  "$ 4,159.01"
+                    LOWDAY:  "$ 3,956.96"
+                    OPEN24HOUR:  "$ 4,165.97"
+                    HIGH24HOUR:  "$ 4,245.84"
+                    LOW24HOUR:  "$ 3,954.54"
+                    LASTMARKET:  "Bitfinex"
+                    CHANGE24HOUR:  "$ -171.64"
+                    CHANGEPCT24HOUR:  "-4.12"
+                    CHANGEDAY:  "$ -149.53"
+                    CHANGEPCTDAY:  "-3.61"
+                    SUPPLY:  "Ƀ 17,404,437.0"
+                    MKTCAP:  "$ 69.52 B"
+                    TOTALVOLUME24H:  "Ƀ 435.32 K"
+                    TOTALVOLUME24HTO: "$ 1,746.79 M"
+                EUR: Object
+                    FROMSYMBOL:  "Ƀ"
+                    TOSYMBOL:  "€"
+                    MARKET:  "CryptoCompare Index"
+                    PRICE:  "€ 3,503.62"
+                    LASTUPDATE:  "Just now"
+                    LASTVOLUME:  "Ƀ 0.05128"
+                    LASTVOLUMETO:  "€ 178.08"
+                    LASTTRADEID:  "78838661"
+                    VOLUMEDAY:  "Ƀ 3,968.57"
+                    VOLUMEDAYTO:  "€ 14,033,640.8"
+                    VOLUME24HOUR:  "Ƀ 12,244.5"
+                    VOLUME24HOURTO: "€ 44,355,460.6"
+                    OPENDAY:  "€ 3,642.13"
+                    HIGHDAY:  "€ 3,655.04"
+                    LOWDAY:  "€ 3,473.38"
+                    OPEN24HOUR:  "€ 3,667.39"
+                    HIGH24HOUR:  "€ 3,741.23"
+                    LOW24HOUR:  "€ 3,470.66"
+                    LASTMARKET:  "Bitstamp"
+                    CHANGE24HOUR:  "€ -163.77"
+                    CHANGEPCT24HOUR:  "-4.47"
+                    CHANGEDAY:  "€ -138.51"
+                    CHANGEPCTDAY:  "-3.80"
+                    SUPPLY:  "Ƀ 17,404,437.0"
+                    MKTCAP:  "€ 60.98 B"
+                    TOTALVOLUME24H:  "Ƀ 435.32 K"
+                    TOTALVOLUME24HTO: "€ 1,526.67 M"
+
+--------------------------------------------------------------------------------
+Generate Custom Average
+
+Compute the current trading info (price, vol, open, high, low etc) of the
+requested pair as a volume weighted average based on the exchanges requested.
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/generateAvg?
+    fsym=BTC&
+    tsym=USD&
+    e=Kraken
+
+RESPONSE
+    Object
+        RAW: Object
+            MARKET:  "CUSTOMAGG"
+            FROMSYMBOL:  "BTC"
+            TOSYMBOL:  "USD"
+            FLAGS: 0
+            PRICE: 3943.3
+            LASTUPDATE: 1543821513
+            LASTVOLUME: 0.2901976
+            LASTVOLUMETO: 1144.33619608
+            LASTTRADEID:  "1543821513.145"
+            VOLUME24HOUR: 6890.4992644299855
+            VOLUME24HOURTO: 27920080.692542292
+            OPEN24HOUR: 4111.9
+            HIGH24HOUR: 4197.6
+            LOW24HOUR: 3906.1
+            LASTMARKET:  "Kraken"
+            CHANGE24HOUR: -168.59999999999945
+            CHANGEPCT24HOUR: -4.100294267856696
+            CHANGEDAY: 0
+            CHANGEPCTDAY: 0
+        DISPLAY: Object
+            FROMSYMBOL:  "Ƀ"
+            TOSYMBOL:  "$"
+            MARKET:  "CUSTOMAGG"
+            PRICE:  "$ 3,943.30"
+            LASTUPDATE:  "2 min ago"
+            LASTVOLUME:  "Ƀ 0.2902"
+            LASTVOLUMETO:  "$ 1,144.34"
+            LASTTRADEID:  "1543821513.145"
+            VOLUME24HOUR:  "Ƀ 6,890.50"
+            VOLUME24HOURTO:  "$ 27,920,080.7"
+            OPEN24HOUR:  "$ 4,111.90"
+            HIGH24HOUR:  "$ 4,197.60"
+            LOW24HOUR:  "$ 3,906.10"
+            LASTMARKET:  "Kraken"
+            CHANGE24HOUR:  "$ -168.60"
+            CHANGEPCT24HOUR:  "-4.10"
+            CHANGEDAY:  "$ 0"
+            CHANGEPCTDAY:  "0"
+
+--------------------------------------------------------------------------------
+Historical Daily OHLCV
+
+Get open, high, low, close, volumefrom and volumeto from the daily historical
+data. The values are based on 00:00 GMT time. It uses BTC conversion if data is
+not available because the coin is not trading in the specified currency.
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/histoday?
+    fsym=BTC&
+    tsym=USD&
+    limit=4
+
+RESPONSE
+    Object
+        Response:  "Success"
+        Type: 100
+        Aggregated: false
+        Data: Array [5]
+            0: Object
+                time: 1543449600
+                close: 4286.69
+                high: 4444.39
+                low: 4130.68
+                open: 4263.52
+                volumefrom: 112103.36
+                volumeto: 479575430.64
+            1: Object
+                time: 1543536000
+                close: 4009.67
+                high: 4331.07
+                low: 3916.3
+                open: 4286.85
+                volumefrom: 121993.57
+                volumeto: 497762735.43
+            2: Object
+                time: 1543622400
+                close: 4197.46
+                high: 4309.65
+                low: 3942.62
+                open: 4009.67
+                volumefrom: 67774.58
+                volumeto: 280927570.31
+            3: Object
+                time: 1543708800
+                close: 4143.86
+                high: 4318.79
+                low: 4077.67
+                open: 4197.7
+                volumefrom: 62748.83
+                volumeto: 262154694.41
+            4: Object
+                time: 1543795200
+                close: 3996.08
+                high: 4159.01
+                low: 3956.96
+                open: 4143.86
+                volumefrom: 31012.94
+                volumeto: 124634813.35
+        TimeTo: 1543795200
+        TimeFrom: 1543449600
+        FirstValueInArray: true
+        ConversionType: Object
+            type:  "direct"
+            conversionSymbol:  ""
+        RateLimit: Object
+            No Properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Historical Hourly OHLCV
+
+Get open, high, low, close, volumefrom and volumeto from the hourly historical
+data. It uses BTC conversion if data is not available because the coin is not
+trading in the specified currency.
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/histohour?
+    fsym=BTC&
+    tsym=USD&
+    limit=2
+
+RESPONSE
+    Object
+        Response:  "Success"
+        Type: 100
+        Aggregated: false
+        Data: Array [3]
+            0: Object
+                time: 1543813200
+                close: 4007.5
+                high: 4021.5
+                low: 3997.89
+                open: 4020.23
+                volumefrom: 3172.82
+                volumeto: 12683309.12
+            1: Object
+                time: 1543816800
+                close: 4003.09
+                high: 4009.67
+                low: 3979.8
+                open: 4007.5
+                volumefrom: 3667.94
+                volumeto: 14621916.85
+            2: Object
+                time: 1543820400
+                close: 3995.35
+                high: 4003.25
+                low: 3984.23
+                open: 4003.09
+                volumefrom: 1267.01
+                volumeto: 5042356.69
+        TimeTo: 1543820400
+        TimeFrom: 1543813200
+        FirstValueInArray: true
+        ConversionType: Object
+            type:  "direct"
+            conversionSymbol:  ""
+        RateLimit: Object
+            No properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Historical Minute OHLCV
+
+Get open, high, low, close, volumefrom and volumeto from the each minute
+historical data. This data is only stored for 7 days, if you need more, use the
+hourly or daily path. It uses BTC conversion if data is not available because
+the coin is not trading in the specified currency.
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/histominute?
+    fsym=BTC&
+    tsym=GBP&
+    limit=3
+
+RESPONSE
+    Object
+        Response:  "Success"
+        Type: 100
+        Aggregated: false
+        Data: Array [4]
+            0: Object
+                time: 1543822680
+                close: 3124.85
+                high: 3126.5
+                low: 3124.85
+                open: 3126.5
+                volumefrom: 0.06686
+                volumeto: 208.87
+            1: Object
+                time: 1543822740
+                close: 3124.7
+                high: 3124.85
+                low: 3124.7
+                open: 3124.85
+                volumefrom: 0.1048
+                volumeto: 327.33
+            2: Object
+                time: 1543822800
+                close: 3124.7
+                high: 3124.7
+                low: 3124.7
+                open: 3124.7
+                volumefrom: 0
+                volumeto: 0
+            3: Object
+                time: 1543822860
+                close: 3124.7
+                high: 3124.7
+                low: 3124.7
+                open: 3124.7
+                volumefrom: 0
+                volumeto: 0
+        TimeTo: 1543822860
+        TimeFrom: 1543822680
+        FirstValueInArray: true
+        ConversionType: Object
+            type:  "direct"
+            conversionSymbol:  ""
+        RateLimit: Object
+            No properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Historical Day OHLCV for a timestamp
+
+Get the price of any cryptocurrency in any other currency that you need at a
+given timestamp. The price comes from the daily info - so it would be the price
+at the end of the day GMT based on the requested TS.
+
+If the crypto does not trade directly into the toSymbol requested, BTC will be
+used for conversion. Tries to get direct trading pair data, if there is none or
+it is more than 10 days before the ts requested, it uses BTC conversion. If the
+opposite pair trades we invert it (eg.: BTC-XMR)
+
+The calculation types are:
+    Close - a Close of the day close price
+    MidHighLow - the average between the 24 H high and low
+    VolFVolT - the total volume to / the total volume from
+
+Parameters:
+    ts	The unix timestamp of interest
+--------------------------------------------------------------------------------
+
+GET https://min-api.cryptocompare.com/data/pricehistorical?
+    fsym=BTC&
+    tsyms=USD&
+    ts=1452680400
+
+RESPONSE
+    Object
+        BTC: Object
+            USD: 432.18
+
+--------------------------------------------------------------------------------
+Historical Day Average Price
+
+Get day average price. The values are based on hourly vwap data and the average
+can be calculated in different ways. It uses BTC conversion if data is not
+available because the coin is not trading in the specified currency. If
+tryConversion is set to false it will give you the direct data. If no toTS is
+given it will automatically do the current day. Also for different timezones
+use the UTCHourDiff param
+
+The calculation types are:
+    HourVWAP - a VWAP of the hourly close price
+    MidHighLow - the average between the 24 H high and low.
+    VolFVolT - the total volume from / the total volume to (only avilable with
+                tryConversion set to false so only for direct trades but the
+                value should be the most accurate average day price)
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/dayAvg?
+	fsym=BTC&
+	tsym=USD
+
+RESPONSE
+    Object
+        USD: 4016.9
+        ConversionType: Object
+            type:  "direct"
+            conversionSymbol:  ""
+
+--------------------------------------------------------------------------------
+Historical Daily Exchange Volume
+
+Get total volume from the daily historical exchange data.The values are based
+on 00:00 GMT time. We store the data in BTC and we multiply by the BTC-tsym value
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/exchange/histoday?
+    tsym=USD&
+    limit=2
+
+RESPONSE
+    Object
+        Type:  100
+        Message:  "Got the data"
+        Data: Array [3]
+            0: Object
+                time: 1543622400
+                volume: 3263530019.05
+            1: Object
+                time: 1543708800
+                volume: 5966963804.33
+            2: Object
+                time: 1543795200
+                volume: 1883693803.99
+        TimeFrom: 1543622400
+        TimeTo: 1543795200
+        FirstValueInArray: true
+        ConversionType:  "direct"
+        RateLimit: Object
+            No properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Historical Hourly Exchange Volume
+
+Get total volume from the hourly historical exchange data.We store the data in
+BTC and we multiply by the BTC-tsym value
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/exchange/histohour?
+    tsym=USD&
+    limit=2
+
+RESPONSE
+    Object
+        Type:  100
+        Message:  "Got the data"
+        Data: Array [3]
+            0: Object
+                time: 1543813200
+                volume: 201610752.7
+            1: Object
+                time: 1543816800
+                volume: 241702370.96
+            2: Object
+                time: 1543820400
+                volume: 140786437.32
+        TimeFrom: 1543813200
+        TimeTo: 1543820400
+        FirstValueInArray: true
+        ConversionType:  "direct"
+        RateLimit: Object
+            No properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Top Exchanges Volume Data by Pair
+
+Get top exchanges by volume for a currency pair. The number of exchanges you
+get is the minimum of the limit you set (default 5) and the total number of
+exchanges available
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/top/exchanges?
+    fsym=BTC&
+    tsym=USD
+
+RESPONSE
+    Object
+        Response:  "Success"
+        Data: Array [5]
+            0: Object
+                exchange:  "Bitfinex"
+                fromSymbol:  "BTC"
+                toSymbol:  "USD"
+                volume24h: 29690.78391545005
+                volume24hTo: 122802749.8078331
+            1: Object
+                exchange:  "Coinbase"
+                fromSymbol:  "BTC"
+                toSymbol:  "USD"
+                volume24h: 11866.433135259951
+                volume24hTo: 48066732.871095784
+            2: Object
+                exchange:  "Bitstamp"
+                fromSymbol:  "BTC"
+                toSymbol:  "USD"
+                volume24h: 7272.6144607800015
+                volume24hTo: 29580031.58551675
+            3: Object
+                exchange:  "Kraken"
+                fromSymbol:  "BTC"
+                toSymbol:  "USD"
+                volume24h: 7069.684432359985
+                volume24hTo: 28628767.353087384
+            4: Object
+                exchange:  "itBit"
+                fromSymbol:  "BTC"
+                toSymbol:  "USD"
+                volume24h: 5358.492000000001
+                volume24hTo: 21754887.059145994
+        RateLimit: Object
+            No properties
+        HasWarning: false
+        Type: 100
+
+--------------------------------------------------------------------------------
+Top Exchanges Full Data By Pair
+
+Get top exchanges by volume for a currency pair plus the full CCCAGG data. The
+number of exchanges you get is the minimum of the limit you set (default 5) and
+the total number of exchanges available
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/top/exchanges/full?
+    fsym=BTC&
+    tsym=USD
+
+RESPONSE
+    Object
+        Response:  "Success"
+        Message: "Total available exchanges - 63"
+        Data: Object
+            CoinInfo: Object
+                Id:  "1182"
+                Name:  "BTC"
+                FullName:  "Bitcoin"
+                Internal:  "BTC"
+                ImageUrl: "/media/19633/btc.png"
+                Url:  "/coins/btc/overview"
+                Algorithm:  "SHA256"
+                ProofType:  "PoW"
+                TotalCoinsMined: 17404500
+                BlockNumber: 552360
+                NetHashesPerSecond: 47626925733.7275
+                BlockReward: 12.5
+                BlockTime: 600
+                TotalVolume24H: 438753.35291595396
+            AggregatedData: Object
+                TYPE:  "5"
+                MARKET:  "CCCAGG"
+                FROMSYMBOL:  "BTC"
+                TOSYMBOL:  "USD"
+                FLAGS:  "1"
+                PRICE: 3993.87
+                LASTUPDATE: 1543825489
+                LASTVOLUME: 0.005
+                LASTVOLUMETO: 20.10045970315
+                LASTTRADEID:  "319494027"
+                VOLUMEDAY: 35913.58729631688
+                VOLUMEDAYTO: 144215912.24922365
+                VOLUME24HOUR: 76157.8245207963
+                VOLUME24HOURTO: 311908388.8132001
+                OPENDAY: 4143.86
+                HIGHDAY: 4159.01
+                LOWDAY: 3956.96
+                OPEN24HOUR: 4173.15
+                HIGH24HOUR: 4245.48
+                LOW24HOUR: 3952.16
+                LASTMARKET:  "Bitfinex"
+                CHANGE24HOUR: -179.27999999999975
+                CHANGEPCT24HOUR: -4.2960353689658834
+                CHANGEDAY: -149.98999999999978
+                CHANGEPCTDAY: -3.6195720897906734
+                SUPPLY: 17404500
+                MKTCAP: 69511310415
+                TOTALVOLUME24H: 438771.45366312197
+                TOTALVOLUME24HTO: 1760140083.8358603
+            Exchanges: Array [5]
+                0: Object
+                    TYPE:  "2"
+                    MARKET:  "Bitfinex"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "4"
+                    PRICE: 4020
+                    LASTUPDATE: 1543825482
+                    LASTVOLUME: 0.03095488
+                    LASTVOLUMETO: 124.4386176
+                    LASTTRADEID:  "319494017"
+                    VOLUME24HOUR: 29524.27867463005
+                    VOLUME24HOURTO: 122026054.62532726
+                    OPEN24HOUR: 4211.3
+                    HIGH24HOUR: 4293
+                    LOW24HOUR: 3980
+                    CHANGE24HOUR: -191.30000000000018
+                    CHANGEPCT24HOUR: -4.542540308218369
+                    CHANGEDAY: 0
+                    CHANGEPCTDAY: 0
+                    SUPPLY: 17404500
+                    MKTCAP: 69966090000
+                    TOTALVOLUME24H: 438753.35291595396
+                    TOTALVOLUME24HTO: 1767126933.0754495
+                1: Object
+                    TYPE:  "2"
+                    MARKET:  "Coinbase"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "1"
+                    PRICE: 3950.31
+                    LASTUPDATE: 1543825475
+                    LASTVOLUME: 0.00592182
+                    LASTVOLUMETO: 23.3930247642
+                    LASTTRADEID:  "55249288"
+                    VOLUME24HOUR: 11825.39081673995
+                    VOLUME24HOURTO: 47884665.64957083
+                    OPEN24HOUR: 4123.87
+                    HIGH24HOUR: 4185
+                    LOW24HOUR: 3910.11
+                    CHANGE24HOUR: -173.55999999999995
+                    CHANGEPCT24HOUR: -4.208668071495948
+                    CHANGEDAY: 0
+                    CHANGEPCTDAY: 0
+                    SUPPLY: 17404500
+                    MKTCAP: 68753170395
+                    TOTALVOLUME24H: 438753.35291595396
+                    TOTALVOLUME24HTO: 1734382463.6097171
+                2: Object
+                    TYPE:  "2"
+                    MARKET:  "Bitstamp"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "1"
+                    PRICE: 3950.73
+                    LASTUPDATE: 1543825485
+                    LASTVOLUME: 0.02273243
+                    LASTVOLUMETO: 89.8096931739
+                    LASTTRADEID:  "78840285"
+                    VOLUME24HOUR: 7316.538518710002
+                    VOLUME24HOURTO: 29735041.562234726
+                    OPEN24HOUR: 4118.11
+                    HIGH24HOUR: 4184.52
+                    LOW24HOUR: 3913
+                    CHANGE24HOUR: -167.37999999999965
+                    CHANGEPCT24HOUR: -4.06448589280033
+                    CHANGEDAY: 0
+                    CHANGEPCTDAY: 0
+                    SUPPLY: 17404500
+                    MKTCAP: 68760480285
+                    TOTALVOLUME24H: 438753.35291595396
+                    TOTALVOLUME24HTO: 1734225407.3058584
+                3: Object
+                    TYPE:  "2"
+                    MARKET:  "Kraken"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "1"
+                    PRICE: 3951.3
+                    LASTUPDATE: 1543825462
+                    LASTVOLUME: 0.00479017
+                    LASTVOLUMETO: 18.927398721
+                    LASTTRADEID:  "1543825462.322"
+                    VOLUME24HOUR: 7038.7903934399865
+                    VOLUME24HOURTO: 28485432.38016779
+                    OPEN24HOUR: 4123.2
+                    HIGH24HOUR: 4197.6
+                    LOW24HOUR: 3906.1
+                    CHANGE24HOUR: -171.89999999999964
+                    CHANGEPCT24HOUR: -4.16909196740395
+                    CHANGEDAY: 0
+                    CHANGEPCTDAY: 0
+                    SUPPLY: 17404500
+                    MKTCAP: 68770400850
+                    TOTALVOLUME24H: 438753.35291595396
+                    TOTALVOLUME24HTO: 1734319183.2753773
+                4: Object
+                    TYPE:  "2"
+                    MARKET:  "itBit"
+                    FROMSYMBOL:  "BTC"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "4"
+                    PRICE: 3951.69
+                    LASTUPDATE: 1543825413
+                    LASTVOLUME: 0.0961
+                    LASTVOLUMETO: 379.75740900000005
+                    LASTTRADEID:  "4028721"
+                    VOLUME24HOUR: 5319.565400000001
+                    VOLUME24HOURTO: 21584045.675081998
+                    OPEN24HOUR: 4123.12
+                    HIGH24HOUR: 4183.84
+                    LOW24HOUR: 3912.82
+                    CHANGE24HOUR: -171.42999999999984
+                    CHANGEPCT24HOUR: -4.157773724752126
+                    CHANGEDAY: 0
+                    CHANGEPCTDAY: 0
+                    SUPPLY: 17404500
+                    MKTCAP: 68777188605
+                    TOTALVOLUME24H: 438771.45366312197
+                    TOTALVOLUME24HTO: 1734451538.0055783
+        RateLimit: Object
+        HasWarning: false
+        Type: 100
+
+--------------------------------------------------------------------------------
+Toplist by Pair Volume
+
+Get top coins by volume for the to currency. It returns volume24hto and total
+supply (where available). The number of coins you get is the minimum of the
+limit you set (default 50) and the total number of coins available
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/top/volumes?tsym=BTC&limit=2
+
+RESPONSE
+    Object
+        Data: Array [3]
+            0: Object
+                SYMBOL:  "ETH"
+                SUPPLY: 103571214.9678
+                FULLNAME:  "Ethereum (ETH)"
+                NAME:  "Ethereum"
+                ID:  "7605"
+                VOLUME24HOURTO: 55643.0789523682
+            1: Object
+                SYMBOL:  "EOS"
+                SUPPLY: 1023275962.3568
+                FULLNAME:  "EOS (EOS)"
+                NAME:  "EOS"
+                ID:  "166503"
+                VOLUME24HOURTO: 31966.88014925679
+            2: Object
+                SYMBOL:  "DASH"
+                SUPPLY: 8484142.63164162
+                FULLNAME:  "Dash (DASH)"
+                NAME:  "Dash"
+                ID:  "3807"
+                VOLUME24HOURTO: 26842.006808915852
+        Type: 100
+        Response:  "Success"
+        VolSymbol:  "BTC"
+        Message:  "All ok"
+        RateLimit: Object
+            No properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Toplist of Trading Pairs
+
+Get top pairs by volume for a currency (always uses our aggregated data). The
+number of pairs you get is the minimum of the limit you set (default 5) and the
+total number of pairs available
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/top/pairs?fsym=BTC
+
+RESPONSE
+    Object
+        Response:  "Success"
+        Data: Array [5]
+            0: Object
+                exchange:  "CCCAGG"
+                fromSymbol:  "BTC"
+                toSymbol:  "USDT"
+                volume24h: 289566.3962159205
+                volume24hTo: 1196535997.6673458
+            1: Object
+                exchange:  "CCCAGG"
+                fromSymbol:  "BTC"
+                toSymbol:  "USD"
+                volume24h: 77094.2199621696
+                volume24hTo: 315649721.22496355
+            2: Object
+                exchange:  "CCCAGG"
+                fromSymbol:  "BTC"
+                toSymbol:  "JPY"
+                volume24h: 35051.80596053971
+                volume24hTo: 16196438073.098106
+            3: Object
+                exchange:  "CCCAGG"
+                fromSymbol:  "BTC"
+                toSymbol:  "EUR"
+                volume24h: 12661.294809719986
+                volume24hTo: 45776592.076761745
+            4: Object
+                exchange:  "CCCAGG"
+                fromSymbol:  "BTC"
+                toSymbol:  "QC"
+                volume24h: 11514.582099999967
+                volume24hTo: 329476952.61725694
+        RateLimit: Object
+        HasWarning: false
+        Type: 100
+
+--------------------------------------------------------------------------------
+Toplist by Total Volume
+
+Get a number of top coins by their total volume across all markets in the last
+24 hours. Default value is first page (0) and the top 10 coins.
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/top/totalvol?limit=10&tsym=USD
+
+RESPONSE
+    Object
+        Message:  "Success"
+        Type: 100
+        SponsoredData: Array [1]
+            0: Object
+                CoinInfo: Object
+                    Id:  "925695"
+                    Name:  "CRYP"
+                    FullName:  "CrypticCoin"
+                    Internal:  "CRYP"
+                    ImageUrl: "/media/34478470/cryp.png"
+                    Url:  "/coins/cryp/overview"
+                    Algorithm:  "Equihash"
+                    ProofType:  "PoW"
+                    NetHashesPerSecond: 0
+                    BlockNumber: 0
+                    BlockTime: 150
+                    BlockReward: 0
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "multiply"
+                    ConversionSymbol:  "ETH"
+                    CurrencyFrom:  "CRYP"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 4235111504
+                    TotalVolume24H: 4053575
+                    SubBase:  "5~"
+                    SubsNeeded: Array [2]
+                    0:  "5~CCCAGG~CRYP~ETH"
+                    1:  "5~CCCAGG~ETH~USD"
+                    RAW: Array [2]
+                        0: "5~CCCAGG~CRYP~ETH~4~0.00001399~1543810222~536~0.00749864~
+                        15438102220001~29779~0.55639191~3934161~60.42635751000002~0.00001327~
+                        0.00001982~0.00001327~0.00001879~0.00001982~0.00001399~BitMart~7ffe9"
+                        1: "5~CCCAGG~ETH~USD~4~112.31~1543826092~8.921503~1010.8062898999999~
+                        319496781~254370.50185402078~28727672.828819565~494227.2185199902~
+                        56693311.85306668~115.96~116.27~111.67~116.81~118.72~111.5~Bitfinex~7ffe9"
+        Data: Array [10]
+            0: Object
+                CoinInfo: Object
+                    Id:  "1182"
+                    Name:  "BTC"
+                    FullName:  "Bitcoin"
+                    Internal:  "BTC"
+                    ImageUrl: "/media/19633/btc.png"
+                    Url:  "/coins/btc/overview"
+                    Algorithm:  "SHA256"
+                    ProofType:  "PoW"
+                    NetHashesPerSecond: 47626925733.7275
+                    BlockNumber: 552360
+                    BlockTime: 600
+                    BlockReward: 12.5
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "direct"
+                    ConversionSymbol:  ""
+                    CurrencyFrom:  "BTC"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 17404500
+                    TotalVolume24H: 442350.7980088228
+                    SubBase:  "5~"
+                    SubsNeeded: Array [1]
+                        0:  "5~CCCAGG~BTC~USD"
+                    RAW: Array [1]
+                        0: "5~CCCAGG~BTC~USD~4~3994.7~1543826088~0.00033563~1.3257385~
+                        1543826088.1668~36894.43687374873~148135916.33176246~
+                        77138.67409822831~315828392.89573896~4143.86~4159.01~3956.96~
+                        4173.46~4245.9~3953.03~Kraken~7ffe9"
+            1: Object
+                CoinInfo: Object
+                    Id:  "7605"
+                    Name:  "ETH"
+                    FullName:  "Ethereum"
+                    Internal:  "ETH"
+                    ImageUrl: "/media/20646/eth_logo.png"
+                    Url:  "/coins/eth/overview"
+                    Algorithm:  "Ethash"
+                    ProofType:  "PoW"
+                    NetHashesPerSecond: 176603659662701
+                    BlockNumber: 6817389
+                    BlockTime: 15
+                    BlockReward: 3
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "direct"
+                    ConversionSymbol:  ""
+                    CurrencyFrom:  "ETH"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 103571214.9678
+                    TotalVolume24H: 5479008.939566715
+                    SubBase:  "5~"
+                    SubsNeeded: Array [1]
+                        0:  "5~CCCAGG~ETH~USD"
+                    RAW: Array [1]
+                        0: "5~CCCAGG~ETH~USD~4~112.31~1543826092~8.921503~
+                        1010.8062898999999~319496781~254370.50185402078~28727672.
+                        828819565~494227.2185199902~56693311.85306668~115.96~116.
+                        27~111.67~116.81~118.72~111.5~Bitfinex~7ffe9"
+
+            ...
+
+            9: Object
+                CoinInfo: Object
+                    Id:  "112392"
+                    Name:  "QTUM"
+                    FullName:  "QTUM"
+                    Internal:  "QTUM"
+                    ImageUrl: "/media/1383382/qtum.png"
+                    Url:  "/coins/qtum/overview"
+                    Algorithm:  "POS 3.0"
+                    ProofType:  "PoS"
+                    NetHashesPerSecond: 0
+                    BlockNumber: 0
+                    BlockTime: 120
+                    BlockReward: 0
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "multiply"
+                    ConversionSymbol:  "ETH"
+                    CurrencyFrom:  "QTUM"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 100000000
+                    TotalVolume24H: 50082603.19363226
+                    SubBase:  "5~"
+                    SubsNeeded: Array [2]
+                        0:  "5~CCCAGG~QTUM~ETH"
+                        1:  "5~CCCAGG~ETH~USD"
+                    RAW: Array [2]
+                        0: "5~CCCAGG~QTUM~ETH~4~0.01786~1543826074~10.94561~0.
+                        1948674312325~35439193~2440624.013566562~45626.79352096746~
+                        7279814.442860549~133444.43938225406~0.01826~0.01835~0.01768~
+                        0.01806~0.01849~0.01767~OKEX~7ffe9"
+                        1: "5~CCCAGG~ETH~USD~4~112.31~1543826092~8.921503~1010.
+                        8062898999999~319496781~254370.50185402078~28727672.828819565~
+                        494227.2185199902~56693311.85306668~115.96~116.27~111.67~
+                        116.81~118.72~111.5~Bitfinex~7ffe9"
+        RateLimit: Object
+        No properties
+        HasWarning: false
