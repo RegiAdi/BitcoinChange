@@ -4,23 +4,6 @@ function $(element) {
     return document.getElementById(element);
 }
 
-// get one month Bitcoin Price Index
-fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
-.then(function (response) {
-    return response.json();
-})
-.then(function (response) {
-    var ul = document.getElementById('monthly-price');
-
-    // create one month Bitcoin Price Index list
-    Object.keys(response.bpi).forEach(function (key) {
-        var li = document.createElement('li');
-        var dailyPrice = document.createTextNode(key + ': $' + response.bpi[key]);
-        li.appendChild(dailyPrice);
-        ul.appendChild(li);
-    });
-});
-
 fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD&api_key=' + apiKey)
 .then(function (response) {
     return response.json();
