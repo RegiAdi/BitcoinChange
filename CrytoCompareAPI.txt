@@ -14,6 +14,19 @@ Single Symbol Price
 Get the current price of any cryptocurrency in any other currency that you need.
 If the crypto does not trade directly into the toSymbol requested, BTC will be
 used for conversion. If the opposite pair trades we invert it (eg.: BTC-XMR)
+
+Parameters:
+tryConversion	If set to false, it will try to get only direct trading values
+fsym	        REQUIRED The cryptocurrency symbol of interest [Max character
+                length: 10]
+tsyms	        REQUIRED Comma separated cryptocurrency symbols list to convert
+                into [Max character length: 500]
+e	            The exchange to obtain data from (our aggregated average -
+                CCCAGG - by default) [Max character length: 30]
+extraParams	    The name of your application (we recommend you send it) [Max
+                character length: 2000]
+sign	        If set to true, the server will sign the requests (by default
+                we don't sign them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/price?
     fsym=BTC&
@@ -29,6 +42,19 @@ RESPONSE
 Multiple Symbols Price
 
 Same as single API path but with multiple from symbols.
+
+Parameters:
+tryConversion	If set to false, it will try to get only direct trading values
+fsyms	        REQUIRED Comma separated cryptocurrency symbols list [Max
+                character length: 300]
+tsyms	        REQUIRED Comma separated cryptocurrency symbols list to convert
+                into [Max character length: 100]
+e	            The exchange to obtain data from (our aggregated average -
+                CCCAGG - by default) [Max character length: 30]
+extraParams	    The name of your application (we recommend you send it) [Max
+                character length: 2000]
+sign	        If set to true, the server will sign the requests (by default
+                we don't sign them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/pricemulti?
     fsyms=BTC,ETH&
@@ -52,6 +78,19 @@ trade directly into the toSymbol requested, BTC will be used for conversion.
 
 This API also returns Display values for all the fields. If the opposite pair
 trades we invert it (eg.: BTC-XMR)
+
+Parameters:
+tryConversion	If set to false, it will try to get only direct trading values
+fsyms	        REQUIRED Comma separated cryptocurrency symbols list [Max
+                character length: 300]
+tsyms	        REQUIRED Comma separated cryptocurrency symbols list to convert
+                into [Max character length: 100]
+e	            The exchange to obtain data from (our aggregated average -
+                CCCAGG - by default) [Max character length: 30]
+extraParams	    The name of your application (we recommend you send it) [Max
+                character length: 2000]
+sign	        If set to true, the server will sign the requests (by default
+                we don't sign them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/pricemultifull?
     fsyms=BTC&
@@ -185,6 +224,16 @@ Generate Custom Average
 
 Compute the current trading info (price, vol, open, high, low etc) of the
 requested pair as a volume weighted average based on the exchanges requested.
+
+Parameters:
+fsym	        REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym	        REQUIRED The currency symbol to convert into [Max character length: 10]
+e	            REQUIRED The exchange to obtain data from (our aggregated average -
+                CCCAGG - by default) [Max character length: 150]
+extraParams	    The name of your application (we recommend you send it) [Max character
+                length: 2000]
+sign	        If set to true, the server will sign the requests (by default we
+                don't sign them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/generateAvg?
     fsym=BTC&
@@ -239,6 +288,41 @@ Historical Daily OHLCV
 Get open, high, low, close, volumefrom and volumeto from the daily historical
 data. The values are based on 00:00 GMT time. It uses BTC conversion if data is
 not available because the coin is not trading in the specified currency.
+
+Parameters:
+tryConversion
+    If set to false, it will try to get only direct trading values
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+e
+    The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30]
+aggregate
+    Time period to aggregate the data over (for daily it's days, for hourly
+    it's hours and for minute histo it's minutes)
+aggregatePredictableTimePeriods
+    True by default, only used when the aggregate param is also in use. If false
+    it will aggregate based on the current time. If the param is false and the
+    time you make the call is 1pm - 2pm, with aggregate 2, it will create the
+    time slots: ... 9am, 11am, 1pm. If the param is false and the time you make
+    the call is 2pm - 3pm, with aggregate 2, it will create the time slots: ...
+    10am, 12am, 2pm. If the param is true (default) and the time you make the
+    call is 1pm - 2pm, with aggregate 2, it will create the time slots: ... 8am,
+    10am, 12pm. If the param is true (default) and the time you make the call is
+    2pm - 3pm, with aggregate 2, it will create the time slots: ... 10am, 12am, 2pm.
+limit
+    The number of data points to return
+allData
+    Returns all data (only available on histo day)
+toTs
+    Last unix timestamp to return data for
+extraParams
+    The name of your application (we recommend you send it) [Max character
+    length: 2000] sign	If set to true, the server will sign the requests (by
+    default we don't sign them), this is useful for usage in smart contracts
+
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/histoday?
     fsym=BTC&
@@ -307,6 +391,39 @@ Historical Hourly OHLCV
 Get open, high, low, close, volumefrom and volumeto from the hourly historical
 data. It uses BTC conversion if data is not available because the coin is not
 trading in the specified currency.
+
+Parameters:
+tryConversion
+    If set to false, it will try to get only direct trading values
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+e
+    The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30] aggregate	Time period to aggregate
+    the data over (for daily it's days, for hourly it's hours and for minute
+    histo it's minutes)
+aggregatePredictableTimePeriods
+    True by default, only used when the aggregate param is also in use. If false
+    it will aggregate based on the current time. If the param is false and the
+    time you make the call is 1pm - 2pm, with aggregate 2, it will create the
+    time slots: ... 9am, 11am, 1pm. If the param is false and the time you make
+    the call is 2pm - 3pm, with aggregate 2, it will create the time slots: ...
+    10am, 12am, 2pm. If the param is true (default) and the time you make the
+    call is 1pm - 2pm, with aggregate 2, it will create the time slots: ... 8am,
+    10am, 12pm. If the param is true (default) and the time you make the call is
+    2pm - 3pm, with aggregate 2, it will create the time slots: ... 10am, 12am, 2pm.
+limit
+    The number of data points to return
+toTs
+    Last unix timestamp to return data for
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/histohour?
     fsym=BTC&
@@ -360,6 +477,40 @@ Get open, high, low, close, volumefrom and volumeto from the each minute
 historical data. This data is only stored for 7 days, if you need more, use the
 hourly or daily path. It uses BTC conversion if data is not available because
 the coin is not trading in the specified currency.
+
+Parameters:
+tryConversion
+    If set to false, it will try to get only direct trading values
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+e
+    The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30] aggregate	Time period to aggregate
+    the data over (for daily it's days, for hourly it's hours and for minute
+    histo it's minutes)
+aggregatePredictableTimePeriods
+    True by default, only used when the aggregate param is also in use. If false
+    it will aggregate based on the current time. If the param is false and the
+    time you make the call is 1pm - 2pm, with aggregate 2, it will create the
+    time slots: ... 9am, 11am, 1pm. If the param is false and the time you make
+    the call is 2pm - 3pm, with aggregate 2, it will create the time slots: ...
+    10am, 12am, 2pm. If the param is true (default) and the time you make the
+    call is 1pm - 2pm, with aggregate 2, it will create the time slots: ... 8am,
+    10am, 12pm. If the param is true (default) and the time you make the call is
+    2pm - 3pm, with aggregate 2, it will create the time slots: ... 10am, 12am,
+    2pm.
+limit
+    The number of data points to return
+toTs
+    Last unix timestamp to return data for
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/histominute?
     fsym=BTC&
@@ -432,7 +583,27 @@ The calculation types are:
     VolFVolT - the total volume to / the total volume from
 
 Parameters:
-    ts	The unix timestamp of interest
+tryConversion
+    If set to false, it will try to get only direct trading values
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsyms
+    REQUIRED Comma separated cryptocurrency symbols list to convert into [Max
+    character length: 30]
+ts
+    The unix timestamp of interest
+e	The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30]
+extraParams
+    The name of your application (we recommend you send it) [Max character
+    length: 2000]
+calculationType
+    Type of average to calculate (Close - a Close of the day close price,
+    MidHighLow - the average between the 24 H high and low, VolFVolT - the total
+    volume to / the total volume from) [Max character length: 30]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 
 GET https://min-api.cryptocompare.com/data/pricehistorical?
@@ -461,6 +632,31 @@ The calculation types are:
     VolFVolT - the total volume from / the total volume to (only avilable with
                 tryConversion set to false so only for direct trades but the
                 value should be the most accurate average day price)
+
+Parameters:
+tryConversion
+    If set to false, it will try to get only direct trading values
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+e
+    The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30]
+avgType
+    Type of average to calculate (HourVWAP - a HourVWAP of hourly price,
+    MidHighLow - the average between the 24 H high and low, VolFVolT - the total
+    volume to / the total volume from) [Max character length: 30]
+UTCHourDiff
+    By deafult it does UTC, if you want a different time zone just pass the hour
+    difference. For PST you would pass -8 for example.
+toTs
+    Last unix timestamp to return data for
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/dayAvg?
 	fsym=BTC&
@@ -478,6 +674,36 @@ Historical Daily Exchange Volume
 
 Get total volume from the daily historical exchange data.The values are based
 on 00:00 GMT time. We store the data in BTC and we multiply by the BTC-tsym value
+
+Parameters:
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+e
+    The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30]
+aggregate
+    Time period to aggregate the data over (for daily it's days, for hourly
+    it's hours and for minute histo it's minutes)
+aggregatePredictableTimePeriods
+    True by default, only used when the aggregate param is also in use. If false
+    it will aggregate based on the current time. If the param is false and the
+    time you make the call is 1pm - 2pm, with aggregate 2, it will create the
+    time slots: ... 9am, 11am, 1pm. If the param is false and the time you make
+    the call is 2pm - 3pm, with aggregate 2, it will create the time slots: ...
+    10am, 12am, 2pm. If the param is true (default) and the time you make the
+    call is 1pm - 2pm, with aggregate 2, it will create the time slots: ... 8am,
+    10am, 12pm. If the param is true (default) and the time you make the call is
+    2pm - 3pm, with aggregate 2, it will create the time slots: ... 10am, 12am, 2pm.
+limit
+    The number of data points to return
+toTs
+    Last unix timestamp to return data for
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/exchange/histoday?
     tsym=USD&
@@ -510,6 +736,36 @@ Historical Hourly Exchange Volume
 
 Get total volume from the hourly historical exchange data.We store the data in
 BTC and we multiply by the BTC-tsym value
+
+Parameters:
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+e
+    The exchange to obtain data from (our aggregated average - CCCAGG - by
+    default) [Max character length: 30]
+aggregate
+    Time period to aggregate the data over (for daily it's days, for hourly it's
+    hours and for minute histo it's minutes)
+aggregatePredictableTimePeriods
+    True by default, only used when the aggregate param is also in use. If false
+    it will aggregate based on the current time. If the param is false and the
+    time you make the call is 1pm - 2pm, with aggregate 2, it will create the
+    time slots: ... 9am, 11am, 1pm. If the param is false and the time you make
+    the call is 2pm - 3pm, with aggregate 2, it will create the time slots: ...
+    10am, 12am, 2pm. If the param is true (default) and the time you make the call
+    is 1pm - 2pm, with aggregate 2, it will create the time slots: ... 8am, 10am,
+    12pm. If the param is true (default) and the time you make the call is 2pm -
+    3pm, with aggregate 2, it will create the time slots: ... 10am, 12am, 2pm.
+limit
+    The number of data points to return
+toTs
+    Last unix timestamp to return data for
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/exchange/histohour?
     tsym=USD&
@@ -538,11 +794,287 @@ RESPONSE
         HasWarning: false
 
 --------------------------------------------------------------------------------
+Toplist by 24H Volume Full Data
+
+Get a number of top coins by their total volume across all markets in the last
+24 hours. Default value is first page (0) and the top 10 coins.
+
+Parameters:
+
+limit
+    The number of coins to return in the toplist, default 10, min 10, max 100
+    will round to steps of 10 coins
+page
+    The pagination for the request. If you want to paginate by 50 for example,
+    pass in the limit_toplist param the value 50 and increasing page_toplist
+    integer values, 0 would return coins 0-50, 1 returns coins 50-100
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD
+
+RESPONSE
+    Object
+        Message:  "Success"
+        Type: 100
+        SponsoredData: Array [1]
+            0: Object
+            CoinInfo: Object
+                Id:  "925695"
+                Name:  "CRYP"
+                FullName:  "CrypticCoin"
+                Internal:  "CRYP"
+                ImageUrl: "/media/34478470/cryp.png"
+                Url:  "/coins/cryp/overview"
+                Algorithm:  "Equihash"
+                ProofType:  "PoW"
+                NetHashesPerSecond: 0
+                BlockNumber: 0
+                BlockTime: 150
+                BlockReward: 0
+                Type: 1
+                DocumentType:  "Webpagecoinp"
+            RAW: Object
+                 USD: Object
+                    TYPE:  "5"
+                    MARKET:  "CCCAGG"
+                    FROMSYMBOL:  "CRYP"
+                    TOSYMBOL:  "USD"
+                    FLAGS:  "1"
+                    PRICE: 0.0021482
+                    LASTUPDATE: 1543896186
+                    LASTVOLUME: 0
+                    LASTVOLUMETO: 0
+                    LASTTRADEID: 0
+                    VOLUMEDAY: 0
+                    VOLUMEDAYTO: 0
+                    VOLUME24HOUR: 0
+                    VOLUME24HOURTO: 0
+                    OPENDAY: 0.0015026659
+                    HIGHDAY: 0.0021482
+                    LOWDAY: 0.0015026659
+                    OPEN24HOUR: 0.0017454125
+                    HIGH24HOUR: 0.0021482
+                    LOW24HOUR: 0.0017454125
+                    LASTMARKET:  "LAToken"
+                    CHANGE24HOUR: 0.0004027874999999999
+                    CHANGEPCT24HOUR: 23.07692307692307
+                    CHANGEDAY: 0.0006455340999999999
+                    CHANGEPCTDAY: 42.95925661186561
+                    SUPPLY: 4235111504
+                    MKTCAP: 9097866.532892799
+                    TOTALVOLUME24H: 274119
+                    TOTALVOLUME24HTO: 588.8624358
+            DISPLAY: Object
+                USD: Object
+                    FROMSYMBOL:  "CRYP"
+                    TOSYMBOL:  "$"
+                    MARKET: "CryptoCompare Index"
+                    PRICE:  "$ 0.002148"
+                    LASTUPDATE:  "Just now"
+                    LASTVOLUME:  "CRYP 0"
+                    LASTVOLUMETO:  "$ 0"
+                    LASTTRADEID: 0
+                    VOLUMEDAY:  "CRYP 0"
+                    VOLUMEDAYTO:  "$ 0"
+                    VOLUME24HOUR:  "CRYP 0"
+                    VOLUME24HOURTO:  "$ 0"
+                    OPENDAY:  "$ 0.001503"
+                    HIGHDAY:  "$ 0.002148"
+                    LOWDAY:  "$ 0.001503"
+                    OPEN24HOUR:  "$ 0.001745"
+                    HIGH24HOUR:  "$ 0.002148"
+                    LOW24HOUR:  "$ 0.001745"
+                    LASTMARKET:  "LAToken"
+                    CHANGE24HOUR:  "$ 0.00040"
+                    CHANGEPCT24HOUR:  "23.08"
+                    CHANGEDAY:  "$ 0.00065"
+                    CHANGEPCTDAY:  "42.96"
+                    SUPPLY: "CRYP 4,235,111,504.0"
+                    MKTCAP:  "$ 9,097.87 K"
+                    TOTALVOLUME24H: "CRYP 274.12 K"
+                    TOTALVOLUME24HTO:  "$ 588.86"
+        Data: Array [10]
+            0: Object
+                CoinInfo: Object
+                    Id:  "1182"
+                    Name:  "BTC"
+                    FullName:  "Bitcoin"
+                    Internal:  "BTC"
+                    ImageUrl: "/media/19633/btc.png"
+                    Url:  "/coins/btc/overview"
+                    Algorithm:  "SHA256"
+                    ProofType:  "PoW"
+                    NetHashesPerSecond: 40419149884.527
+                    BlockNumber: 552452
+                    BlockTime: 600
+                    BlockReward: 12.5
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                    RAW: Object
+                        USD: Object
+                            TYPE:  "5"
+                            MARKET:  "CCCAGG"
+                            FROMSYMBOL:  "BTC"
+                            TOSYMBOL:  "USD"
+                            FLAGS:  "1"
+                            PRICE: 3834.13
+                            LASTUPDATE: 1543896188
+                            LASTVOLUME: 0.5
+                            LASTVOLUMETO: 1901.135
+                            LASTTRADEID:  "5052379673"
+                            VOLUMEDAY: 17753.567906282304
+                            VOLUMEDAYTO: 68667023.08953814
+                            VOLUME24HOUR: 99435.0127445531
+                            VOLUME24HOURTO: 389293069.06074005
+                            OPENDAY: 3871.41
+                            HIGHDAY: 3913.25
+                            LOWDAY: 3810.76
+                            OPEN24HOUR: 4009.98
+                            HIGH24HOUR: 4058.66
+                            LOW24HOUR: 3788.3
+                            LASTMARKET:  "Gemini"
+                            CHANGE24HOUR: -175.8499999999999
+                            CHANGEPCT24HOUR: -4.385308654906008
+                            CHANGEDAY: -37.279999999999745
+                            CHANGEPCTDAY: -0.9629566488695267
+                            SUPPLY: 17405650
+                            MKTCAP: 66735524834.5
+                            TOTALVOLUME24H: 457966.1145465065
+                            TOTALVOLUME24HTO: 1763947922.4126637
+                    DISPLAY: Object
+                        USD: Object
+                            FROMSYMBOL:  "Ƀ"
+                            TOSYMBOL:  "$"
+                            MARKET: "CryptoCompare Index"
+                            PRICE:  "$ 3,834.13"
+                            LASTUPDATE:  "Just now"
+                            LASTVOLUME:  "Ƀ 0.5000"
+                            LASTVOLUMETO:  "$ 1,901.14"
+                            LASTTRADEID:  "5052379673"
+                            VOLUMEDAY:  "Ƀ 17,753.6"
+                            VOLUMEDAYTO: "$ 68,667,023.1"
+                            VOLUME24HOUR:  "Ƀ 99,435.0"
+                            VOLUME24HOURTO: "$ 389,293,069.1"
+                            OPENDAY:  "$ 3,871.41"
+                            HIGHDAY:  "$ 3,913.25"
+                            LOWDAY:  "$ 3,810.76"
+                            OPEN24HOUR:  "$ 4,009.98"
+                            HIGH24HOUR:  "$ 4,058.66"
+                            LOW24HOUR:  "$ 3,788.30"
+                            LASTMARKET:  "Gemini"
+                            CHANGE24HOUR:  "$ -175.85"
+                            CHANGEPCT24HOUR:  "-4.39"
+                            CHANGEDAY:  "$ -37.28"
+                            CHANGEPCTDAY:  "-0.96"
+                            SUPPLY:  "Ƀ 17,405,650.0"
+                            MKTCAP:  "$ 66.74 B"
+                            TOTALVOLUME24H:  "Ƀ 457.97 K"
+                            TOTALVOLUME24HTO: "$ 1,763.95 M"
+
+        ...
+
+            9: Object
+                CoinInfo: Object
+                    Id:  "27368"
+                    Name:  "NEO"
+                    FullName:  "NEO"
+                    Internal:  "NEO"
+                    ImageUrl: "/media/1383858/neo.jpg"
+                    Url:  "/coins/neo/overview"
+                    Algorithm:  "N/A"
+                    ProofType:  "N/A"
+                    NetHashesPerSecond: 0
+                    BlockNumber: 0
+                    BlockTime: 0
+                    BlockReward: 0
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                RAW: Object
+                    USD: Object
+                        TYPE:  "5"
+                        MARKET:  "CCCAGG"
+                        FROMSYMBOL:  "NEO"
+                        TOSYMBOL:  "USD"
+                        FLAGS:  "4"
+                        PRICE: 7.34
+                        LASTUPDATE: 1543896169
+                        LASTVOLUME: 0.00000415
+                        LASTVOLUMETO: 0.00003044191
+                        LASTTRADEID:  "319716850"
+                        VOLUMEDAY: 52210.806468019946
+                        VOLUMEDAYTO: 387255.07061140594
+                        VOLUME24HOUR: 288557.0737539902
+                        VOLUME24HOURTO: 2171307.1867665136
+                        OPENDAY: 7.41
+                        HIGHDAY: 7.54
+                        LOWDAY: 7.25
+                        OPEN24HOUR: 7.91
+                        HIGH24HOUR: 7.91
+                        LOW24HOUR: 7.22
+                        LASTMARKET:  "Bitfinex"
+                        CHANGE24HOUR: -0.5700000000000003
+                        CHANGEPCT24HOUR: -7.206068268015174
+                        CHANGEDAY: -0.07000000000000028
+                        CHANGEPCTDAY: -0.9446693657220012
+                        SUPPLY: 65000000
+                        MKTCAP: 477100000
+                        TOTALVOLUME24H: 10867350.607912855
+                        TOTALVOLUME24HTO: 79819651.72749259
+                DISPLAY: Object
+                    USD: Object
+                        FROMSYMBOL:  "NEO"
+                        TOSYMBOL:  "$"
+                        MARKET: "CryptoCompare Index"
+                        PRICE:  "$ 7.34"
+                        LASTUPDATE:  "Just now"
+                        LASTVOLUME:  "NEO 0.00000415"
+                        LASTVOLUMETO:  "$ 0.00003044"
+                        LASTTRADEID:  "319716850"
+                        VOLUMEDAY:  "NEO 52,210.8"
+                        VOLUMEDAYTO:  "$ 387,255.1"
+                        VOLUME24HOUR: "NEO 288,557.1"
+                        VOLUME24HOURTO: "$ 2,171,307.2"
+                        OPENDAY:  "$ 7.41"
+                        HIGHDAY:  "$ 7.54"
+                        LOWDAY:  "$ 7.25"
+                        OPEN24HOUR:  "$ 7.91"
+                        HIGH24HOUR:  "$ 7.91"
+                        LOW24HOUR:  "$ 7.22"
+                        LASTMARKET:  "Bitfinex"
+                        CHANGE24HOUR:  "$ -0.57"
+                        CHANGEPCT24HOUR:  "-7.21"
+                        CHANGEDAY:  "$ -0.070"
+                        CHANGEPCTDAY:  "-0.94"
+                        SUPPLY:  "NEO 65,000,000.0"
+                        MKTCAP:  "$ 477.10 M"
+                        TOTALVOLUME24H: "NEO 10.87 M"
+                        TOTALVOLUME24HTO: "$ 79.82 M"
+        RateLimit: Object
+        HasWarning: false
+
+--------------------------------------------------------------------------------
 Top Exchanges Volume Data by Pair
 
 Get top exchanges by volume for a currency pair. The number of exchanges you
 get is the minimum of the limit you set (default 5) and the total number of
 exchanges available
+
+Parameters:
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+limit
+    The number of data points to return
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/top/exchanges?
     fsym=BTC&
@@ -593,6 +1125,19 @@ Top Exchanges Full Data By Pair
 Get top exchanges by volume for a currency pair plus the full CCCAGG data. The
 number of exchanges you get is the minimum of the limit you set (default 5) and
 the total number of exchanges available
+
+Parameters:
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+limit
+    The number of data points to return
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/top/exchanges/full?
     fsym=BTC&
@@ -779,6 +1324,17 @@ Toplist by Pair Volume
 Get top coins by volume for the to currency. It returns volume24hto and total
 supply (where available). The number of coins you get is the minimum of the
 limit you set (default 50) and the total number of coins available
+
+Parameters:
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+limit
+    The number of data points to return
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/top/volumes?tsym=BTC&limit=2
 
@@ -820,6 +1376,17 @@ Toplist of Trading Pairs
 Get top pairs by volume for a currency (always uses our aggregated data). The
 number of pairs you get is the minimum of the limit you set (default 5) and the
 total number of pairs available
+
+Parameters:
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+limit
+    The number of data points to return
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
 GET https://min-api.cryptocompare.com/data/top/pairs?fsym=BTC
 
@@ -862,11 +1429,26 @@ RESPONSE
         Type: 100
 
 --------------------------------------------------------------------------------
-Toplist by Total Volume
+Toplist by 24H Volume Subscriptions
 
 Get a number of top coins by their total volume across all markets in the last
 24 hours. Default value is first page (0) and the top 10 coins.
+
+Parameters:
+limit
+    The number of coins to return in the toplist, default 10, min 10, max 100
+    will round to steps of 10 coins
+page
+    The pagination for the request. If you want to paginate by 50 for example,
+    pass in the limit_toplist param the value 50 and increasing page_toplist
+    integer values, 0 would return coins 0-50, 1 returns coins 50-100
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
 --------------------------------------------------------------------------------
+
 GET https://min-api.cryptocompare.com/data/top/totalvol?limit=10&tsym=USD
 
 RESPONSE
@@ -1016,4 +1598,384 @@ RESPONSE
                         116.81~118.72~111.5~Bitfinex~7ffe9"
         RateLimit: Object
         No properties
+        HasWarning: false
+
+--------------------------------------------------------------------------------
+Subs By Pair
+
+Get all the available streamer subscription channels for the requested pairs.
+
+Parameters:
+fsym
+    REQUIRED The cryptocurrency symbol of interest [Max character length: 10]
+tsyms
+    Comma separated cryptocurrency symbols list to convert into [Max character length: 100]
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/subs?fsym=BTC&tsyms=USD
+
+RESPONSE
+    Object
+        USD: Object
+        TRADES: Array [63]
+            0:  "0~Cryptsy~BTC~USD"
+            1:  "0~BTCChina~BTC~USD"
+            2:  "0~Bitstamp~BTC~USD"
+            3:  "0~OKCoin~BTC~USD"
+            4:  "0~Coinbase~BTC~USD"
+            5:  "0~Poloniex~BTC~USD"
+            6:  "0~Cexio~BTC~USD"
+            7:  "0~BTCE~BTC~USD"
+            8:  "0~BitTrex~BTC~USD"
+            9:  "0~Kraken~BTC~USD"
+            10:  "0~Bitfinex~BTC~USD"
+            11:  "0~LocalBitcoins~BTC~USD"
+            12:  "0~itBit~BTC~USD"
+            13:  "0~Coinfloor~BTC~USD"
+            14:  "0~Huobi~BTC~USD"
+            15:  "0~LakeBTC~BTC~USD"
+            16:  "0~Coinsetter~BTC~USD"
+            17:  "0~CCEX~BTC~USD"
+            18:  "0~MonetaGo~BTC~USD"
+            19:  "0~Gatecoin~BTC~USD"
+            20:  "0~Gemini~BTC~USD"
+            21:  "0~CCEDK~BTC~USD"
+            22:  "0~Exmo~BTC~USD"
+            23:  "0~Yobit~BTC~USD"
+            24:  "0~BitBay~BTC~USD"
+            25:  "0~QuadrigaCX~BTC~USD"
+            26:  "0~BitSquare~BTC~USD"
+            27:  "0~TheRockTrading~BTC~USD"
+            28:  "0~bitFlyer~BTC~USD"
+            29:  "0~Quoine~BTC~USD"
+            30:  "0~LiveCoin~BTC~USD"
+            31:  "0~WavesDEX~BTC~USD"
+            32:  "0~Lykke~BTC~USD"
+            33:  "0~Remitano~BTC~USD"
+            34:  "0~Coinroom~BTC~USD"
+            35:  "0~Abucoins~BTC~USD"
+            36:  "0~TrustDEX~BTC~USD"
+            37:  "0~BitFlip~BTC~USD"
+            38:  "0~Coincap~BTC~USD"
+            39:  "0~Graviex~BTC~USD"
+            40:  "0~ExtStock~BTC~USD"
+            41:  "0~DSX~BTC~USD"
+            42:  "0~Bitlish~BTC~USD"
+            43:  "0~CoinDeal~BTC~USD"
+            44:  "0~CoinsBank~BTC~USD"
+            45:  "0~Neraex~BTC~USD"
+            46:  "0~SingularityX~BTC~USD"
+            47:  "0~Simex~BTC~USD"
+            48:  "0~RightBTC~BTC~USD"
+            49:  "0~WEX~BTC~USD"
+            50:  "0~BitexBook~BTC~USD"
+            51: "0~IndependentReserve~BTC~USD"
+            52:  "0~CoinHub~BTC~USD"
+            53:  "0~Ore~BTC~USD"
+            54:  "0~Bitsane~BTC~USD"
+            55:  "0~BTCAlpha~BTC~USD"
+            56:  "0~P2PB2B~BTC~USD"
+            57:  "0~StocksExchange~BTC~USD"
+            58:  "0~Liquid~BTC~USD"
+            59:  "0~Coinsbit~BTC~USD"
+            60:  "0~Incorex~BTC~USD"
+            61:  "0~Exenium~BTC~USD"
+            62: "0~StocksExchangeio~BTC~USD"
+        CURRENT: Array [63]
+            0:  "2~Cryptsy~BTC~USD"
+            1:  "2~BTCChina~BTC~USD"
+            2:  "2~Bitstamp~BTC~USD"
+            3:  "2~OKCoin~BTC~USD"
+            4:  "2~Coinbase~BTC~USD"
+            5:  "2~Poloniex~BTC~USD"
+            6:  "2~Cexio~BTC~USD"
+            7:  "2~BTCE~BTC~USD"
+            8:  "2~BitTrex~BTC~USD"
+            9:  "2~Kraken~BTC~USD"
+            10:  "2~Bitfinex~BTC~USD"
+            11:  "2~LocalBitcoins~BTC~USD"
+            12:  "2~itBit~BTC~USD"
+            13:  "2~Coinfloor~BTC~USD"
+            14:  "2~Huobi~BTC~USD"
+            15:  "2~LakeBTC~BTC~USD"
+            16:  "2~Coinsetter~BTC~USD"
+            17:  "2~CCEX~BTC~USD"
+            18:  "2~MonetaGo~BTC~USD"
+            19:  "2~Gatecoin~BTC~USD"
+            20:  "2~Gemini~BTC~USD"
+            21:  "2~CCEDK~BTC~USD"
+            22:  "2~Exmo~BTC~USD"
+            23:  "2~Yobit~BTC~USD"
+            24:  "2~BitBay~BTC~USD"
+            25:  "2~QuadrigaCX~BTC~USD"
+            26:  "2~BitSquare~BTC~USD"
+            27:  "2~TheRockTrading~BTC~USD"
+            28:  "2~bitFlyer~BTC~USD"
+            29:  "2~Quoine~BTC~USD"
+            30:  "2~LiveCoin~BTC~USD"
+            31:  "2~WavesDEX~BTC~USD"
+            32:  "2~Lykke~BTC~USD"
+            33:  "2~Remitano~BTC~USD"
+            34:  "2~Coinroom~BTC~USD"
+            35:  "2~Abucoins~BTC~USD"
+            36:  "2~TrustDEX~BTC~USD"
+            37:  "2~BitFlip~BTC~USD"
+            38:  "2~Coincap~BTC~USD"
+            39:  "2~Graviex~BTC~USD"
+            40:  "2~ExtStock~BTC~USD"
+            41:  "2~DSX~BTC~USD"
+            42:  "2~Bitlish~BTC~USD"
+            43:  "2~CoinDeal~BTC~USD"
+            44:  "2~CoinsBank~BTC~USD"
+            45:  "2~Neraex~BTC~USD"
+            46:  "2~SingularityX~BTC~USD"
+            47:  "2~Simex~BTC~USD"
+            48:  "2~RightBTC~BTC~USD"
+            49:  "2~WEX~BTC~USD"
+            50:  "2~BitexBook~BTC~USD"
+            51: "2~IndependentReserve~BTC~USD"
+            52:  "2~CoinHub~BTC~USD"
+            53:  "2~Ore~BTC~USD"
+            54:  "2~Bitsane~BTC~USD"
+            55:  "2~BTCAlpha~BTC~USD"
+            56:  "2~P2PB2B~BTC~USD"
+            57:  "2~StocksExchange~BTC~USD"
+            58:  "2~Liquid~BTC~USD"
+            59:  "2~Coinsbit~BTC~USD"
+            60:  "2~Incorex~BTC~USD"
+            61:  "2~Exenium~BTC~USD"
+            62: "2~StocksExchangeio~BTC~USD"
+        CURRENTAGG:  "5~CCCAGG~BTC~USD"
+
+--------------------------------------------------------------------------------
+Subs Watchlist
+
+Get combinations of subs and pricing info in order to know what needs to be
+streamed and how to connect to the streamers. The possible responses for Conversion
+are: not_needed, direct, invert, multiply, divide, invert_multiply, invert_divide
+
+For not_needed - it means you asked for one symbol to the same symbol. You should
+just use the value you have, no need for streaming or conversion.
+
+For direct - SubBase + Market + ~ + CurrencyFrom + ~ + CurrencyTo
+For invert - 1 / SubBase + Market + ~ + CurrencyTo + ~ + CurrencyFrom
+For multiply - SubBase + Market + ~ + CurrencyFrom + ~ + ConversionSymbol *
+                SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyTo
+For divide - SubBase + Market + ~ + CurrencyFrom + ~ + ConversionSymbol /
+            SubBase + Market + ~ + CurrencyTo + ~ + ConversionSymbol
+For invert_muliply - 1 / (SubBase + Market + ~ + CurrencyFrom + ~ + ConversionSymbol *
+                    SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyTo)
+For invert_divide - SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyTo /
+                    SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyFrom
+
+Parameters:
+fsyms
+    REQUIRED Comma separated cryptocurrency symbols list [Max character length: 3000]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/subsWatchlist?fsyms=BTC,MLN,DASH&tsym=USD
+
+RESPONSE
+    Object
+        BTC: Object
+            Conversion:  "direct"
+            ConversionSymbol:  ""
+            CurrencyFrom:  "BTC"
+            CurrencyTo:  "USD"
+            Market:  "CCCAGG"
+            Supply: 17405650
+            TotalVolume24H: 458081.15901211346
+            SubBase:  "5~"
+            SubsNeeded: Array [1]
+                0:  "5~CCCAGG~BTC~USD"
+            RAW: Array [1]
+                0: "5~CCCAGG~BTC~USD~2~3848.96~1543894101~0.1~387.11~319700435~13072.
+                259910316508~50675912.13905251~98609.34988455617~386689988.79222524~
+                3871.41~3913.25~3830.24~4002.09~4058.19~3787.83~Bitfinex~7ffe9"
+        MLN: Object
+            Conversion:  "multiply"
+            ConversionSymbol:  "ETH"
+            CurrencyFrom:  "MLN"
+            CurrencyTo:  "USD"
+            Market:  "CCCAGG"
+            Supply: 1002000
+            TotalVolume24H: 2642.8774975300003
+            SubBase:  "5~"
+            SubsNeeded: Array [2]
+                0:  "5~CCCAGG~MLN~ETH"
+                1:  "5~CCCAGG~ETH~USD"
+            RAW: Array [2]
+                0: "5~CCCAGG~MLN~ETH~4~0.05825~1543892569~0.287245~0.0170577800596~
+                5c05ee5939880203668cbd9c~3.12776819~0.18293622799666304~985.51432078~
+                59.22604885997386~0.05864~0.05864~0.05825~0.0592~0.06232~0.05789~Bitsane~7ffe9"
+                1: "5~CCCAGG~ETH~USD~4~107.16~1543894099~8.943872~965.4909824000001~
+                319700419~67194.59934775013~7265350.790791198~719871.7278055701~78996980.
+                34230043~108.23~109.51~107.14~113.14~114.14~105.83~Bitfinex~7ffe9"
+        DASH: Object
+            Conversion:  "direct"
+            ConversionSymbol:  ""
+            CurrencyFrom:  "DASH"
+            CurrencyTo:  "USD"
+            Market:  "CCCAGG"
+            Supply: 8485618.04045212
+            TotalVolume24H: 2823812.8695182516
+            SubBase:  "5~"
+            SubsNeeded: Array [1]
+                0:  "5~CCCAGG~DASH~USD"
+            RAW: Array [1]
+                0: "5~CCCAGG~DASH~USD~2~84.63~1543894093~1.35021139~114.16847429283999~
+                319700337~1804.7579404499988~153422.5164621992~16423.17875818~1400852.
+                6307966216~84.87~86.04~84.14~90.7~91.35~82.19~Bitfinex~7ffe9"
+
+
+--------------------------------------------------------------------------------
+Coins General Info
+
+Get combinations of subs and pricing info in order to know what needs to be
+streamed and how to connect to the streamers. The possible responses for
+Conversion are: not_needed, direct, invert, multiply, divide, invert_multiply,
+invert_divide
+
+For not_needed - it means you asked for one symbol to the same symbol. You should
+just use the value you have, no need for streaming or conversion.
+For direct - SubBase + Market + ~ + CurrencyFrom + ~ + CurrencyTo
+For invert - 1 / SubBase + Market + ~ + CurrencyTo + ~ + CurrencyFrom
+For multiply - SubBase + Market + ~ + CurrencyFrom + ~ + ConversionSymbol *
+                SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyTo
+For divide - SubBase + Market + ~ + CurrencyFrom + ~ + ConversionSymbol / SubBase +
+            Market + ~ + CurrencyTo + ~ + ConversionSymbol
+For invert_muliply - 1 / (SubBase + Market + ~ + CurrencyFrom + ~ + ConversionSymbol *
+                    SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyTo)
+For invert_divide - SubBase + Market + ~ + ConversionSymbol + ~ + CurrencyTo / SubBase +
+                    Market + ~ + ConversionSymbol + ~ + CurrencyFrom
+
+Parameters:
+syms
+    REQUIRED Comma separated cryptocurrency symbols list [Max character length: 3000]
+tsym
+    REQUIRED The currency symbol to convert into [Max character length: 10]
+extraParams
+    The name of your application (we recommend you send it) [Max character length: 2000]
+sign
+    If set to true, the server will sign the requests (by default we don't sign
+    them), this is useful for usage in smart contracts
+--------------------------------------------------------------------------------
+GET https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=BTC,MLN,DASH&tsym=USD
+
+RESPONSE
+    Object
+        Message:  "Success"
+        Type: 100
+        Data: Array [3]
+            0: Object
+                CoinInfo: Object
+                    Id:  "1182"
+                    Name:  "BTC"
+                    FullName:  "Bitcoin"
+                    Internal:  "BTC"
+                    ImageUrl: "/media/19633/btc.png"
+                    Url:  "/coins/btc/overview"
+                    Algorithm:  "SHA256"
+                    ProofType:  "PoW"
+                    NetHashesPerSecond: 40419149884.527
+                    BlockNumber: 552452
+                    BlockTime: 600
+                    BlockReward: 12.5
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "direct"
+                    ConversionSymbol:  ""
+                    CurrencyFrom:  "BTC"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 17405650
+                    TotalVolume24H: 472137.09889706667
+                    SubBase:  "5~"
+                    SubsNeeded: Array [1]
+                        0:  "5~CCCAGG~BTC~USD"
+                    RAW: Array [1]
+                        0: "5~CCCAGG~BTC~USD~1~3853.87~1543895337~0.005~19.409000000000002~
+                        319714141~16903.11578223249~65388442.90902376~102440.20575647206~
+                        401402519.5621962~3871.41~3913.25~3810.76~4002.21~4058.48~3788.1~Bitfinex~7ffe9"
+            1: Object
+                CoinInfo: Object
+                    Id:  "45253"
+                    Name:  "MLN"
+                    FullName:  "Melon"
+                    Internal:  "MLN"
+                    ImageUrl: "/media/1382653/mln.png"
+                    Url:  "/coins/mln/overview"
+                    Algorithm:  "N/A"
+                    ProofType:  "N/A"
+                    NetHashesPerSecond: 0
+                    BlockNumber: 0
+                    BlockTime: 60
+                    BlockReward: 0
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "multiply"
+                    ConversionSymbol:  "ETH"
+                    CurrencyFrom:  "MLN"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 1002000
+                    TotalVolume24H: 2643.0680094900003
+                    SubBase:  "5~"
+                    SubsNeeded: Array [2]
+                        0:  "5~CCCAGG~MLN~ETH"
+                        1:  "5~CCCAGG~ETH~USD"
+                    RAW: Array [2]
+                        0: "5~CCCAGG~MLN~ETH~4~0.05825~1543894218~0.19051196~0.
+                        011041227328498~5c05f4ca398802576a8cd7de~3.3182801499999997~
+                        0.19397745532516103~985.70483274~59.23709008730236~0.05864~
+                        0.05864~0.05825~0.0592~0.06232~0.05789~Bitsane~7ffe9"
+                        1: "5~CCCAGG~ETH~USD~4~107.46~1543895337~4.2408821~459.
+                        45716671400004~319714142~101853.91188577015~10968429.
+                        374958253~754531.0403435901~82700058.92646755~108.23~109.
+                        51~105.91~113.17~114.16~105.52~Bitfinex~7ffe9"
+            2: Object
+                CoinInfo: Object
+                    Id:  "3807"
+                    Name:  "DASH"
+                    FullName:  "Dash"
+                    Internal:  "DASH"
+                    ImageUrl: "/media/33842920/dash.png"
+                    Url:  "/coins/dash/overview"
+                    Algorithm:  "X11"
+                    ProofType:  "PoW/PoS"
+                    NetHashesPerSecond: 2149882919598720
+                    BlockNumber: 981465
+                    BlockTime: 140
+                    BlockReward: 3.345598208718
+                    Type: 1
+                    DocumentType:  "Webpagecoinp"
+                ConversionInfo: Object
+                    Conversion:  "direct"
+                    ConversionSymbol:  ""
+                    CurrencyFrom:  "DASH"
+                    CurrencyTo:  "USD"
+                    Market:  "CCCAGG"
+                    Supply: 8485608.00365749
+                    TotalVolume24H: 2859117.3641442605
+                    SubBase:  "5~"
+                    SubsNeeded: Array [1]
+                        0:  "5~CCCAGG~DASH~USD"
+                    RAW: Array [1]
+                        0: "5~CCCAGG~DASH~USD~4~84.03~1543895324~0.388467~32.631228~
+                        319714077~2794.1118082299977~236414.77492116348~17412.
+                        532625959993~1483844.8892555856~84.87~86.04~83.52~90.7~91.
+                        36~82.19~Bitfinex~7ffe9"
+        RateLimit: Object
         HasWarning: false
