@@ -80,7 +80,7 @@ fetch('https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=6
         var high = document.createTextNode('High: ' + data[key].high);
         var low = document.createTextNode('Low: ' + data[key].low);
         var open = document.createTextNode('High: ' + data[key].open);
-        var time = document.createTextNode('Time: ' + data[key].time);
+        var time = document.createTextNode('Time: ' + timeConverter(data[key].time));
         var volumefrom = document.createTextNode('Volumefrom: ' + data[key].volumefrom);
         var volumeto = document.createTextNode('Volumeto: ' + data[key].volumeto);
 
@@ -141,7 +141,7 @@ fetch('https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=2
         var high = document.createTextNode('High: ' + data[key].high);
         var low = document.createTextNode('Low: ' + data[key].low);
         var open = document.createTextNode('High: ' + data[key].open);
-        var time = document.createTextNode('Time: ' + data[key].time);
+        var time = document.createTextNode('Time: ' + timeConverter(data[key].time));
         var volumefrom = document.createTextNode('Volumefrom: ' + data[key].volumefrom);
         var volumeto = document.createTextNode('Volumeto: ' + data[key].volumeto);
 
