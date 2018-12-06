@@ -64,7 +64,7 @@ fetch('https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=6
     Object.keys(data).forEach(function (key) {
         var li = document.createElement('li');
 
-        var index = document.createTextNode(key);
+        var index = document.createTextNode(parseInt(key) + 1);
         li.appendChild(index);
 
         var dailyDataList = document.createElement('ul');
@@ -125,7 +125,7 @@ fetch('https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=2
     Object.keys(data).forEach(function (key) {
         var li = document.createElement('li');
 
-        var index = document.createTextNode(key);
+        var index = document.createTextNode(parseInt(key) + 1);
         li.appendChild(index);
 
         var dailyDataList = document.createElement('ul');
@@ -185,7 +185,7 @@ fetch('https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD&limit=
     Object.keys(data).forEach(function (key) {
         var li = document.createElement('li');
 
-        var index = document.createTextNode(key);
+        var index = document.createTextNode(parseInt(key) + 1);
         li.appendChild(index);
 
         var dailyDataList = document.createElement('ul');
