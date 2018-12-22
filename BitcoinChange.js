@@ -4,6 +4,10 @@ function $(element) {
     return document.getElementById(element);
 }
 
+function displayData(element, data) {
+    document.querySelector(element).innerHTML = data;
+}
+
 function timeConverter(unixTimestamp) {
     // multiply unix timestamp by 1000 to convert to miliseconds
     var date = new Date(unixTimestamp * 1000);
@@ -17,33 +21,36 @@ fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD
     return response.json();
 })
 .then(function (response) {
+    console.log(response);
     var data = response.DISPLAY.BTC.USD;
 
-    $('btc-price').innerHTML = 'Price: ' + data.PRICE;
-    $('btc-change24hour').innerHTML = 'Change24hour: ' + data.CHANGE24HOUR;
-    $('btc-changeday').innerHTML = 'Changeday: ' + data.CHANGEDAY;
-    $('btc-changepct24hour').innerHTML = 'Changepct24hour: ' + data.CHANGEPCT24HOUR;
-    $('btc-changepctday').innerHTML = 'Changepctday: ' + data.CHANGEPCTDAY;
-    $('btc-high24hour').innerHTML = 'High24hour: ' + data.HIGH24HOUR;
-    $('btc-highday').innerHTML = 'Highday: ' + data.HIGHDAY;
-    $('btc-lastmarket').innerHTML = 'Lastmarket: ' + data.LASTMARKET;
-    $('btc-lasttradeid').innerHTML = 'Lasttradeid: ' + data.LASTTRADEID;
-    $('btc-lastupdate').innerHTML = 'Lastupdate: ' + data.LASTUPDATE;
-    $('btc-lastvolume').innerHTML = 'Lastvolume: ' + data.LASTVOLUME;
-    $('btc-lastvolumeto').innerHTML = 'Lastvolumeto: ' + data.LASTVOLUMETO;
-    $('btc-low24hour').innerHTML = 'Low24hour: ' + data.LOW24HOUR;
-    $('btc-lowday').innerHTML = 'Lowday: ' + data.LOWDAY;
-    $('btc-market').innerHTML = 'Market: ' + data.MARKET;
-    $('btc-mktcap').innerHTML = 'Mktcap: ' + data.MKTCAP;
-    $('btc-open24hour').innerHTML = 'Open24hour: ' + data.OPEN24HOUR;
-    $('btc-openday').innerHTML = 'Openday: ' + data.OPENDAY;
-    $('btc-supply').innerHTML = 'Supply: ' + data.SUPPLY;
-    $('btc-totalvolume24h').innerHTML = 'Totalvolume24h: ' + data.TOTALVOLUME24H;
-    $('btc-totalvolume24hto').innerHTML = 'Totalvolume24hto: ' + data.TOTALVOLUME24HTO;
-    $('btc-volume24hour').innerHTML = 'Volume24hour: ' + data.VOLUME24HOUR;
-    $('btc-volume24hourto').innerHTML = 'Volume24hourto: ' + data.VOLUME24HOURTO;
-    $('btc-volumeday').innerHTML = 'Volumeday: ' + data.VOLUMEDAY;
-    $('btc-volumedayto').innerHTML = 'Volumedayto: ' + data.VOLUMEDAYTO;
+    displayData("#bitcoin-price p", data.PRICE);
+    displayData("#change-24h p", data.CHANGE24HOUR);
+    displayData("#change-24h p:last-child", data.CHANGEPCT24HOUR + "%");
+    displayData("#open-24h p", data.OPEN24HOUR);
+    displayData("#high-24h p", data.HIGH24HOUR);
+    displayData("#low-24h p", data.LOW24HOUR);
+
+    displayData("#change-day p", data.CHANGEDAY);
+    displayData("#change-day p:last-child", data.CHANGEPCTDAY + "%");
+    displayData("#open-day p", data.OPENDAY);
+    displayData("#high-day p", data.HIGHDAY);
+    displayData("#low-day p", data.LOWDAY);
+
+    displayData("#market-cap p", data.MKTCAP);
+    displayData("#volume-24h p", data.VOLUME24HOUR);
+    displayData("#volume-24h p:last-child", data.VOLUME24HOURTO);
+    displayData("#total-volume-24h p", data.TOTALVOLUME24H);
+    displayData("#total-volume-24h p:last-child", data.TOTALVOLUME24HTO);
+    displayData("#volume-day p", data.VOLUMEDAY);
+    displayData("#volume-day p:last-child", data.VOLUMEDAYTO);
+    displayData("#last-volume p", data.LASTVOLUME);
+    displayData("#last-volume p:last-child", data.LASTVOLUMETO);
+
+    displayData("#supply p", data.SUPPLY);
+    displayData("#market p", data.MARKET);
+    displayData("#last-trade-id p", data.LASTTRADEID);
+    displayData("#last-market p", data.LASTMARKET);
 })
 .catch(function (error) {
     console.log('Request Failed!', error);
