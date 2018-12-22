@@ -8,59 +8,194 @@
     <title>BitcoinChange</title>
 </head>
 <body>
-    <section id="btc-trading-info">
-        BTC Trading Info:
-        <ul>
-            <li id="btc-price"></li>
-            <li id="btc-change24hour"></li>
-            <li id="btc-changeday"></li>
-            <li id="btc-changepct24hour"></li>
-            <li id="btc-changepctday"></li>
-            <li id="btc-high24hour"></li>
-            <li id="btc-highday"></li>
-            <li id="btc-lastmarket"></li>
-            <li id="btc-lasttradeid"></li>
-            <li id="btc-lastupdate"></li>
-            <li id="btc-lastvolume"></li>
-            <li id="btc-lastvolumeto"></li>
-            <li id="btc-low24hour"></li>
-            <li id="btc-lowday"></li>
-            <li id="btc-market"></li>
-            <li id="btc-mktcap"></li>
-            <li id="btc-open24hour"></li>
-            <li id="btc-openday"></li>
-            <li id="btc-supply"></li>
-            <li id="btc-totalvolume24h"></li>
-            <li id="btc-totalvolume24hto"></li>
-            <li id="btc-volume24hour"></li>
-            <li id="btc-volume24hourto"></li>
-            <li id="btc-volumeday"></li>
-            <li id="btc-volumedayto"></li>
-        </ul>
+    <header>
+        <div id="logo">
+        <h1>BITCOINCHANGE</h1>
+        </div>
+
+        <div id="currency-selector">
+            <select>
+                <option value="USD">USD</option>
+                <option value="IDR">IDR</option>
+            </select>
+        </div>
+    </header>
+
+    <section id="market-data-1">
+        <div id="bitcoin-price">
+            <h2>
+                <img src="" alt="Bitcoin Logo">
+                BITCOIN PRICE
+            </h2>
+
+            <p>$4,278.99</p>
+        </div>
+
+        <div id="right-column">
+            <div id="data-24h">
+                <div id="change-24h">
+                    <h2>CHANGE 24 HOUR</h2>
+                    <p>$-141.37</p>
+                    <p>-4.12%</p>
+                </div>
+
+                <div id="open-24h">
+                    <h2>OPEN 24 HOUR</h2>
+                    <p>$3,459.45</p>
+                </div>
+
+                <div id="high-24h">
+                    <h2>HIGH 24 HOUR</h2>
+                    <p>$3,459.45</p>
+                </div>
+
+                <div id="low-24h">
+                    <h2>LOW 24 HOUR</h2>
+                    <p>$3,241.74</p>
+                </div>
+            </div>
+
+            <div id="data-day">
+                <div id="change-day">
+                    <h2>CHANGE DAY</h2>
+                    <p>$-19.13</p>
+                    <p>-0.58%</p>
+                </div>
+
+                <div id="open-day">
+                    <h2>OPEN DAY</h2>
+                    <p>$3,305.11</p>
+                </div>
+
+                <div id="high-day">
+                    <h2>HIGH DAY</h2>
+                    <p>$3,333.24</p>
+                </div>
+
+                <div id="low-day">
+                    <h2>LOW DAY</h2>
+                    <p>$3,241.74</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="btc-weekly">
-        BTC Weekly:
-        <ul id="btc-weekly-list">
-        </ul>
+    <section id="chart">
     </section>
 
-    <section id="btc-monthly">
-        BTC Monthly:
-        <ul id="btc-monthly-list">
-        </ul>
+    <section id="market-data-2">
+        <div id="market-cap">
+            <h2>MARKET CAP</h2>
+            <p>$57.25 B</p>
+        </div>
+
+        <div id="volume-24h">
+            <h2>VOLUME 24 HOUR</h2>
+            <p>BTC 86,918.3</p>
+            <p>$292,243,169.7</p>
+        </div>
+
+        <div id="total-volume-24h">
+            <h2>TOTAL VOLUME 24 HOUR</h2>
+            <p>BTC 466.59 K</p>
+            <p>$1,539.85 M</p>
+        </div>
+
+        <div id="volume-day">
+            <h2>VOLUME DAY</h2>
+            <p>BTC 15,669.0</p>
+            <p>$51,608,096.5</p>
+        </div>
+
+        <div id="last-volume">
+            <h2>LAST VOLUME</h2>
+            <p>BTC 3.00</p>
+            <p>$10,020.0</p>
+        </div>
     </section>
 
-    <section id="btc-24hours">
-        BTC 24 hours:
-        <ul id="btc-24hours-list">
-        </ul>
+    <section id="market-data-3">
+        <div id="supply">
+            <h2>SUPPLY</h2>
+            <p>BTC 17,421,612.0</p>
+        </div>
+
+        <div id="market">
+            <h2>MARKET</h2>
+            <p>CryptoCompare Index</p>
+        </div>
+
+        <div id="last-trade-id">
+            <h2>LAST TRADE ID</h2>
+            <p>323000506</p>
+        </div>
+
+        <div id="last-market">
+            <h2>LAST MARKET</h2>
+            <p>Bitfinex</p>
+        </div>
     </section>
 
-    <a href="https://www.cryptocompare.com/">
-        <img src="img/CryptoCompare-PNG24.png" alt="">
-    </a>
+    <footer>
+        <a href="https://www.cryptocompare.com/">
+            <img src="img/CryptoCompare-PNG24.png" alt="">
+        </a>
+    </footer>
 
-    <script src="BitcoinChange.js"></script>
+
+    <!--<section id="btc-trading-info">-->
+        <!--BTC Trading Info:-->
+        <!--<ul>-->
+            <!--<li id="btc-price"></li>-->
+            <!--<li id="btc-change24hour"></li>-->
+            <!--<li id="btc-changeday"></li>-->
+            <!--<li id="btc-changepct24hour"></li>-->
+            <!--<li id="btc-changepctday"></li>-->
+            <!--<li id="btc-high24hour"></li>-->
+            <!--<li id="btc-highday"></li>-->
+            <!--<li id="btc-lastmarket"></li>-->
+            <!--<li id="btc-lasttradeid"></li>-->
+            <!--<li id="btc-lastupdate"></li>-->
+            <!--<li id="btc-lastvolume"></li>-->
+            <!--<li id="btc-lastvolumeto"></li>-->
+            <!--<li id="btc-low24hour"></li>-->
+            <!--<li id="btc-lowday"></li>-->
+            <!--<li id="btc-market"></li>-->
+            <!--<li id="btc-mktcap"></li>-->
+            <!--<li id="btc-open24hour"></li>-->
+            <!--<li id="btc-openday"></li>-->
+            <!--<li id="btc-supply"></li>-->
+            <!--<li id="btc-totalvolume24h"></li>-->
+            <!--<li id="btc-totalvolume24hto"></li>-->
+            <!--<li id="btc-volume24hour"></li>-->
+            <!--<li id="btc-volume24hourto"></li>-->
+            <!--<li id="btc-volumeday"></li>-->
+            <!--<li id="btc-volumedayto"></li>-->
+        <!--</ul>-->
+    <!--</section>-->
+
+    <!--<section id="btc-weekly">-->
+        <!--BTC Weekly:-->
+        <!--<ul id="btc-weekly-list">-->
+        <!--</ul>-->
+    <!--</section>-->
+
+    <!--<section id="btc-monthly">-->
+        <!--BTC Monthly:-->
+        <!--<ul id="btc-monthly-list">-->
+        <!--</ul>-->
+    <!--</section>-->
+
+    <!--<section id="btc-24hours">-->
+        <!--BTC 24 hours:-->
+        <!--<ul id="btc-24hours-list">-->
+        <!--</ul>-->
+    <!--</section>-->
+
+    <!--<a href="https://www.cryptocompare.com/">-->
+        <!--<img src="img/CryptoCompare-PNG24.png" alt="">-->
+    <!--</a>-->
+
+    <!--<script src="BitcoinChange.js"></script>-->
 </body>
 </html>

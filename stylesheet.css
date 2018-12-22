@@ -1,0 +1,60 @@
+header {
+    display: flex;
+}
+
+#logo {
+    width: 80%;
+}
+
+#currency-selector {
+    width: 20%;
+}
+
+#market-data-1 {
+    display: flex;
+}
+
+#bitcoin-price {
+    width: 20%;
+}
+
+#right-column {
+    width: 80%;
+}
+
+#data-24h {
+    display: flex;
+}
+
+#data-24h div {
+    width: 25%;
+}
+
+#data-day {
+    display: flex;
+}
+
+#data-day div {
+    width: 25%;
+}
+
+#chart {
+    background-color: grey;
+    height: 476px;
+}
+
+#market-data-2 {
+    display: flex;
+}
+
+#market-data-2 div {
+    width: 20%;
+}
+
+#market-data-3 {
+    display: flex;
+}
+
+#market-data-3 div {
+    width: 25%;
+}
