@@ -1,26 +1,64 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    color: #464646;
+}
+
 h1 {
+    font-family: 'Fira Mono', monospace;
     font-size: 32px;
 }
 
 h2 {
     font-size: 14px;
     font-weight: normal;
+    color: #747474;
 }
 
 header {
     display: flex;
+    margin: 0 3%;
 }
 
-#logo {
-    width: 80%;
-}
-
-#currency-selector {
-    width: 20%;
+#market-data-1 p, #market-data-2 p, #market-data-3 p {
+    font-family: 'Fira Mono', monospace;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 #market-data-1, #market-data-2, #market-data-3 {
     margin: 1% 5%;
+}
+
+#bitcoin-price h2 {
+    display: flex;
+}
+
+#bitcoin-price img {
+    width: 15%;
+    height: 15%;
+}
+
+#bitcoin-price span {
+    padding: 10px;
+}
+
+#logo {
+    width: 90%;
+}
+
+#currency-selector {
+    width: 10%;
+    padding: 25px 0 0 5px;
+}
+
+#currency-selector select {
+    font-size: 14px;
+    color: white;
+    padding: 5px 10px;
+    background-color: #5D5D5D;
+    border: none;
+    border-radius: 4%;
 }
 
 #market-data-1 {
@@ -51,9 +89,22 @@ header {
     width: 25%;
 }
 
+.data-percentage {
+    font-size: 14px !important;
+}
+
 #chart {
-    /*background-color: grey;*/
+    background-color: #5D5D5D;
+    padding: 20px 10px 32px 10px;
+    margin: 0;
     height: 476px;
+}
+
+#chart button {
+    padding: 5px 10px;
+    background-color: white;
+    border: none;
+    border-radius: 4%;
 }
 
 #market-data-2 {
@@ -70,4 +121,9 @@ header {
 
 #market-data-3 div {
     width: 25%;
+}
+
+footer {
+    padding: 5%;
+    text-align: center;
 }

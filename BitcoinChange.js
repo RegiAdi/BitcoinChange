@@ -1,5 +1,9 @@
 var apiKey = '9f76eef88d2b7bdd838adbd412dc6c137f2c02bbf932bd20a91f595d85ef4f91';
 
+// Chart global config
+Chart.defaults.global.defaultFontColor = 'white';
+Chart.defaults.global.defaultFontFamily = "'Fira Mono', monospace";
+
 function $(element) {
     return document.getElementById(element);
 }
@@ -100,16 +104,22 @@ fetch('https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=6
         data: {
             labels: chartLabels,
             datasets: [{
-                label: '# of Votes',
+                label: '',
                 data: chartData,
-                borderColor: 'rgba(255,99,132,1)',
-                pointBackgroundColor: 'rgba(255,99,132,1)',
+                backgroundColor: '#FF9900',
+                borderColor: '#FF9900',
+                pointBackgroundColor: '#FF9900',
                 borderWidth: 1,
                 lineTension: 0,
                 fill: false
             }]
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: 'white',
+                }
+            },
             scales: {
                 yAxes: [{
                     ticks: {
@@ -159,10 +169,11 @@ buttonWeekly.addEventListener('click', function (e) {
             data: {
                 labels: chartLabels,
                 datasets: [{
-                    label: '# of Votes',
+                    label: '',
                     data: chartData,
-                    borderColor: 'rgba(255,99,132,1)',
-                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    backgroundColor: '#FF9900',
+                    borderColor: '#FF9900',
+                    pointBackgroundColor: '#FF9900',
                     borderWidth: 1,
                     lineTension: 0,
                     fill: false
@@ -219,10 +230,11 @@ buttonMonthly.addEventListener('click', function (e) {
             data: {
                 labels: chartLabels,
                 datasets: [{
-                    label: '# of Votes',
+                    label: '',
                     data: chartData,
-                    borderColor: 'rgba(255,99,132,1)',
-                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    backgroundColor: '#FF9900',
+                    borderColor: '#FF9900',
+                    pointBackgroundColor: '#FF9900',
                     borderWidth: 1,
                     lineTension: 0,
                     fill: false
@@ -279,10 +291,11 @@ button24Hour.addEventListener('click', function (e) {
             data: {
                 labels: chartLabels,
                 datasets: [{
-                    label: '# of Votes',
+                    label: '',
                     data: chartData,
-                    borderColor: 'rgba(255,99,132,1)',
-                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    backgroundColor: '#FF9900',
+                    borderColor: '#FF9900',
+                    pointBackgroundColor: '#FF9900',
                     borderWidth: 1,
                     lineTension: 0,
                     fill: false
