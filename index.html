@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <link rel="stylesheet" href="stylesheet.css">
     <title>BitcoinChange</title>
 </head>
 <body>
     <header>
         <div id="logo">
-        <h1>BITCOINCHANGE</h1>
+        <h1><em>BITCOINCHANGE</em></h1>
         </div>
 
         <div id="currency-selector">
@@ -24,115 +26,124 @@
     <section id="market-data-1">
         <div id="bitcoin-price">
             <h2>
-                <img src="" alt="Bitcoin Logo">
-                BITCOIN PRICE
+                <img src="https://chasing-coins.com/api/v1/std/logo/BTC" alt="Bitcoin Logo">
+                <span>BITCOIN PRICE</span>
             </h2>
 
-            <p>$4,278.99</p>
+            <p>-</p>
         </div>
 
         <div id="right-column">
             <div id="data-24h">
                 <div id="change-24h">
                     <h2>CHANGE 24 HOUR</h2>
-                    <p>$-141.37</p>
-                    <p>-4.12%</p>
+                    <p>-</p>
+                    <p class="data-percentage">-</p>
                 </div>
 
                 <div id="open-24h">
                     <h2>OPEN 24 HOUR</h2>
-                    <p>$3,459.45</p>
+                    <p>-</p>
                 </div>
 
                 <div id="high-24h">
                     <h2>HIGH 24 HOUR</h2>
-                    <p>$3,459.45</p>
+                    <p>-</p>
                 </div>
 
                 <div id="low-24h">
                     <h2>LOW 24 HOUR</h2>
-                    <p>$3,241.74</p>
+                    <p>-</p>
                 </div>
             </div>
 
             <div id="data-day">
                 <div id="change-day">
                     <h2>CHANGE DAY</h2>
-                    <p>$-19.13</p>
-                    <p>-0.58%</p>
+                    <p>-</p>
+                    <p class="data-percentage">-</p>
                 </div>
 
                 <div id="open-day">
                     <h2>OPEN DAY</h2>
-                    <p>$3,305.11</p>
+                    <p>-</p>
                 </div>
 
                 <div id="high-day">
                     <h2>HIGH DAY</h2>
-                    <p>$3,333.24</p>
+                    <p>-</p>
                 </div>
 
                 <div id="low-day">
                     <h2>LOW DAY</h2>
-                    <p>$3,241.74</p>
+                    <p>-</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="chart">
+        <div id="historical-range">
+            <button id="button-weekly-chart" type="button">1 Week</button>
+            <button id="button-monthly-chart" type="button">1 Month</button>
+            <button id="button-24h-chart" type="button">24 Hour</button>
+        </div>
+
+        <canvas id="myChart">
+            Your browser does not support the canvas element.
+        </canvas>
     </section>
 
     <section id="market-data-2">
         <div id="market-cap">
             <h2>MARKET CAP</h2>
-            <p>$57.25 B</p>
+            <p>-</p>
         </div>
 
         <div id="volume-24h">
             <h2>VOLUME 24 HOUR</h2>
-            <p>BTC 86,918.3</p>
-            <p>$292,243,169.7</p>
+            <p>-</p>
+            <p>-</p>
         </div>
 
         <div id="total-volume-24h">
             <h2>TOTAL VOLUME 24 HOUR</h2>
-            <p>BTC 466.59 K</p>
-            <p>$1,539.85 M</p>
+            <p>-</p>
+            <p>-</p>
         </div>
 
         <div id="volume-day">
             <h2>VOLUME DAY</h2>
-            <p>BTC 15,669.0</p>
-            <p>$51,608,096.5</p>
+            <p>-</p>
+            <p>-</p>
         </div>
 
         <div id="last-volume">
             <h2>LAST VOLUME</h2>
-            <p>BTC 3.00</p>
-            <p>$10,020.0</p>
+            <p>-</p>
+            <p>-</p>
         </div>
     </section>
 
     <section id="market-data-3">
         <div id="supply">
             <h2>SUPPLY</h2>
-            <p>BTC 17,421,612.0</p>
+            <p>-</p>
         </div>
 
         <div id="market">
             <h2>MARKET</h2>
-            <p>CryptoCompare Index</p>
+            <p>-</p>
         </div>
 
         <div id="last-trade-id">
             <h2>LAST TRADE ID</h2>
-            <p>323000506</p>
+            <p>-</p>
         </div>
 
         <div id="last-market">
             <h2>LAST MARKET</h2>
-            <p>Bitfinex</p>
+            <p>-</p>
         </div>
     </section>
 
@@ -196,6 +207,7 @@
         <!--<img src="img/CryptoCompare-PNG24.png" alt="">-->
     <!--</a>-->
 
-    <!--<script src="BitcoinChange.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="BitcoinChange.js"></script>
 </body>
 </html>
