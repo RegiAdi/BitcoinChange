@@ -1,3 +1,12 @@
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 14px;
+    font-weight: normal;
+}
+
 header {
     display: flex;
 }
@@ -8,6 +17,10 @@ header {
 
 #currency-selector {
     width: 20%;
+}
+
+#market-data-1, #market-data-2, #market-data-3 {
+    margin: 1% 5%;
 }
 
 #market-data-1 {
@@ -39,7 +52,7 @@ header {
 }
 
 #chart {
-    background-color: grey;
+    /*background-color: grey;*/
     height: 476px;
 }
 
