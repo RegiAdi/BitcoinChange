@@ -10,7 +10,7 @@
 <body>
     <header>
         <div id="logo">
-        <h1>BITCOINCHANGE</h1>
+        <h1><em>BITCOINCHANGE</em></h1>
         </div>
 
         <div id="currency-selector">
@@ -81,6 +81,15 @@
     </section>
 
     <section id="chart">
+        <div id="historical-range">
+            <button id="button-weekly-chart" type="button">1 Week</button>
+            <button id="button-monthly-chart" type="button">1 Month</button>
+            <button id="button-24h-chart" type="button">24 Hour</button>
+        </div>
+
+        <canvas id="myChart">
+            Your browser does not support the canvas element.
+        </canvas>
     </section>
 
     <section id="market-data-2">
@@ -196,6 +205,7 @@
         <!--<img src="img/CryptoCompare-PNG24.png" alt="">-->
     <!--</a>-->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="BitcoinChange.js"></script>
 </body>
 </html>
