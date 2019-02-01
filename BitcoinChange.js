@@ -24,7 +24,7 @@ function timeConverter(unixTimestamp) {
 }
 
 // Get bitcoin trading info
-function tradingInfo(currencySymbol='USD', apiKey) {
+function tradingInfo(currencySymbol, apiKey) {
     fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=' + currencySymbol + '&api_key=' + apiKey)
     .then(function (response) {
         return response.json();
